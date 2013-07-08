@@ -1,5 +1,8 @@
+require 'pp'
+
 class PhotosController < ApplicationController
   respond_to :html, :json
+  skip_before_filter  :verify_authenticity_token
 
   def index
     @photos = Photo.all
@@ -12,6 +15,10 @@ class PhotosController < ApplicationController
 
   # % curl -F "photo[photo_image]=@/Users/higepon/Desktop/a.jpg" http://localhost:3000/photos.json
   def create
+    puts "JJJ\n\n"
+    pp params
+    pp params[:photo]
+    puts "HHH\n\n"
     @photo = Photo.new(params[:photo])
     @photo.save
     respond_with @photo
