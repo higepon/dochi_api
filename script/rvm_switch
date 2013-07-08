@@ -1,0 +1,4 @@
+#!/bin/zsh
+[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
+rvm use ruby-1.9.3-p327
+rvm gemset create dochi
