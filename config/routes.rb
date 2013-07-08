@@ -3,6 +3,7 @@ DochiApi::Application.routes.draw do
   # first created -> highest priority.
 
   resources :photos
+  resources :decks
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
