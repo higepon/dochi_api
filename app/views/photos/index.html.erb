@@ -1,0 +1,15 @@
+<% @photos.each do |photo| %>
+
+<%= image_tag photo.photo_image.url %>
+<%= image_tag photo.photo_image.thumb('400x200#').url %>
+<%= image_tag photo.photo_image.jpg.url %>
+<%= image_tag photo.photo_image.process(:greyscale).encode(:tiff).url %>
+
+<%= link_to 'Show', photo %>
+<%= link_to 'Edit', edit_photo_path(photo) %>
+<%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %>
+
+
+<% end %>
+
+
