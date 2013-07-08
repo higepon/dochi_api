@@ -40,3 +40,7 @@ gem 'jquery-rails'
 # dragonfly
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.15'
+
+# rspec
+gem 'rspec'
+gem 'rspec-rails'
