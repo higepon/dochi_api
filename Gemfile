@@ -36,3 +36,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+# dragonfly
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly', '~>0.9.15'
