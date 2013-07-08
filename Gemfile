@@ -44,3 +44,4 @@ gem 'dragonfly', '~>0.9.15'
 # rspec
 gem 'rspec'
 gem 'rspec-rails'
+gem 'json_spec'
