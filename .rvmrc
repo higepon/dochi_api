@@ -1,2 +1,2 @@
-rvm use ruby-1.9.3-p327
-rvm gemset use dochi
+rvm use ruby-2.0.0-p247
+rvm gemset use dochi2
