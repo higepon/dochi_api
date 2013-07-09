@@ -12,9 +12,9 @@ describe PhotosController do
     response.should be_success
   end
 
-  it "can upload a license" do
+  it "can upload a photo" do
     request.accept = "application/json"
-    post :create, :upload => @file, :name => 'keiko'
+    post :create, :photo => { :photo_image => @file, :name => 'keiko' }
     response.should be_success
     response.body.should have_json_type(Integer).at_path("id")
     response.body.should have_json_type(String).at_path("name")

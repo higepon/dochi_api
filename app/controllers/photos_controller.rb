@@ -16,9 +16,7 @@ class PhotosController < ApplicationController
   # % curl -F "photo[photo_image]=@/Users/higepon/Desktop/a.jpg" http://localhost:3000/photos.json
   def create
     @photo = Photo.new(params[:photo])
-    pp params[:photo]
     @photo.save
-    pp @photo
     respond_with @photo
   end
 
