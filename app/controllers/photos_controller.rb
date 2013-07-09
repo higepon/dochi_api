@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(params[:photo])
     @photo.save
+    pp @photo
     respond_with @photo
   end
 

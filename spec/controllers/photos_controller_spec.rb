@@ -14,7 +14,7 @@ describe PhotosController do
 
   it "can upload a photo" do
     request.accept = "application/json"
-    post :create, :photo => { :photo_image => @file, :name => 'keiko' }
+    post :create, :photo => { :photo_image => @file, :name => 'keiko', :deck_id => 1 }
     response.should be_success
     response.body.should have_json_type(Integer).at_path("id")
     response.body.should have_json_type(String).at_path("name")

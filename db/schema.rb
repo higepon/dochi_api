@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708230919) do
+ActiveRecord::Schema.define(:version => 20130709041611) do
 
   create_table "decks", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130708230919) do
     t.string   "photo_image_uid"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "deck_id"
   end
 
 end
