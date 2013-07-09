@@ -22,6 +22,8 @@ class PhotosController < ApplicationController
     @photo = Photo.new(params[:photo])
     pp "we here"
     @photo.save
+    pp "found?"
+    pp Photo.find_by_name("keiko")
     pp @photo
     render json: {:status => :ok }
   end
