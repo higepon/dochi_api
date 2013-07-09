@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  name: MyString
+  photo_image_uid: MyString
+  deck_id: 1
+
+two:
+  id: 2
+  name: MyString
+  photo_image_uid: MyString
+  deck_id: 2
+
+two:
+  id: 3
+  name: MyString
+  photo_image_uid: MyString
+  deck_id: 1
