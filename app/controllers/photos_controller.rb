@@ -23,7 +23,7 @@ class PhotosController < ApplicationController
     pp "we here"
     @photo.save
     pp @photo
-    respond_with @photo
+    render json: {:status => :ok }
   end
 
 end

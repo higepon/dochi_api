@@ -16,9 +16,7 @@ describe PhotosController do
     request.accept = "application/json"
     post :create, :photo => { :photo_image => @file, :name => 'keiko', :deck_id => 1 }
     response.should be_success
-    response.body.should have_json_type(Integer).at_path("id")
-    response.body.should have_json_type(String).at_path("name")
-    response.body.should have_json_type(String).at_path("photo_image_uid")
+    response.body.should be_json_eql(%({"status":"ok"}))
   end
 
 end
