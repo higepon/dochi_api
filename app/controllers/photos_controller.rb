@@ -20,6 +20,9 @@ class PhotosController < ApplicationController
     @photo2 = Photo.new(params[:photo2])
     @photo2.save
     render json: {:status => :ok }
+  rescue
+    pp "come here??"
+    render json: {:status => :error }, :status => :bad_request
   end
 
 end

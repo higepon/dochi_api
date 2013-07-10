@@ -21,4 +21,13 @@ describe PhotosController do
     Photo.find_by_name("jun").should_not be_nil
   end
 
+  it "raise error when deck_id is not specified" do
+    request.accept = "application/json"
+    post :create, :photo => { :photo_image => @file, :name => 'saeko'}, :photo2 => { :photo_image => @file, :name => 'jun', :deck_id => 2 }
+    response.response_code.should == 400
+    response.body.should be_json_eql(%({"status":"error"}))
+    Photo.find_by_name("saeko").should be_nil
+    Photo.find_by_name("jun").should be_nil
+  end
+
 end

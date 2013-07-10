@@ -7,7 +7,8 @@ class Photo < ActiveRecord::Base
 
   def deck_id_not_nil
    if self.deck_id.nil?
-     errors.add :photo, 'cannot be nil'
+     errors.add :photo, 'deck_id cannot be nil'
+     raise 'deck_id cannot be nil'
    end
   end
 end
