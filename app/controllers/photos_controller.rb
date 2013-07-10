@@ -15,10 +15,10 @@ class PhotosController < ApplicationController
 
   # % curl -F "photo[photo_image]=@/Users/higepon/Desktop/a.jpg" http://localhost:3000/photos.json
   def create
-    @photo = Photo.new(params[:photo])
-    @photo.save
-    @photo2 = Photo.new(params[:photo2])
-    @photo2.save
+    @photo0 = Photo.new(params[:photo0])
+    @photo0.save
+    @photo1 = Photo.new(params[:photo1])
+    @photo1.save
     render json: { :status => :ok }
   rescue
     render json: { :status => :error }, :status => :bad_request
