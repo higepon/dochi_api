@@ -2,6 +2,22 @@ class DecksController < ApplicationController
   respond_to :html, :json
   skip_before_filter  :verify_authenticity_token
 
+  def index
+    @ds = Deck.all
+    @decks = []
+    @ds.each {|d|
+      photos = []
+      d.photos.each {|p|
+        photo = {}
+        photo[:url] = p.photo_image.jpg.url
+        photos.push(photo)
+      }
+      deck = { :photos => photos }
+      @decks.push(deck)
+    }
+    respond_with @decks
+  end
+
   def new
     @deck = Deck.new
   end
