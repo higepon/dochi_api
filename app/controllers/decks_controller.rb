@@ -12,7 +12,7 @@ class DecksController < ApplicationController
         photo[:url] = p.photo_image.url
         photos.push(photo)
       }
-      deck = { :photos => photos }
+      deck = { :photos => photos, :user_id => d.user_id }
       @decks.push(deck)
     }
     respond_with @decks
@@ -24,6 +24,7 @@ class DecksController < ApplicationController
 
   def create
     @deck = Deck.new
+    @deck.user_id = 1234
     @deck.save
     respond_with @deck
   end
