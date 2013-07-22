@@ -9,7 +9,7 @@ class DecksController < ApplicationController
       photos = []
       d.photos.each {|p|
         photo = {}
-        photo[:url] = p.photo_image.url
+        photo[:url] = p.photo_image.thumb('320x480').url
         photos.push(photo)
       }
       deck = { :photos => photos, :user_id => d.user_id }

@@ -59,6 +59,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     multi_json (1.7.7)
+    mysql2 (0.3.13)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -129,6 +130,7 @@ DEPENDENCIES
   dragonfly (~> 0.9.15)
   jquery-rails
   json_spec
+  mysql2
   rack-cache
   rails (= 3.2.13)
   rspec
