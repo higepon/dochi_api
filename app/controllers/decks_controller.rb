@@ -12,7 +12,7 @@ class DecksController < ApplicationController
         photo[:url] = p.photo_image.thumb('320x480').url
         photos.push(photo)
       }
-      deck = { :photos => photos, :user_id => d.user_id }
+      deck = { :photos => photos, :user_id => d.user_id, :user_name => 'hoge' }
       @decks.push(deck)
     }
     respond_with @decks
