@@ -15,6 +15,7 @@ describe DecksController do
     response.should be_success
     response.body.should have_json_type(Array).at_path("0/photos")
     response.body.should have_json_type(Integer).at_path("0/user_id")
+    response.body.should have_json_type(String).at_path("0/user_name")
     response.body.should have_json_type(String).at_path("0/photos/0/url")
   end
 
