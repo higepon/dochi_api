@@ -1,7 +1,10 @@
 class LoginController < ApplicationController
 
   def facebook
-    render json: { :name => "taro" }
+    if params[:token]
+      render json: { :name => "taro" }
+    else
+      render json: { :status => :error }, :status => :bad_request
+    end
   end
-
 end
