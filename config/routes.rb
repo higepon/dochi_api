@@ -4,7 +4,7 @@ DochiApi::Application.routes.draw do
 
   resources :photos
   resources :decks
-  match 'login/facebook' => 'login#facebook'
+  match 'login/facebook' => 'login#facebook', :via => :post
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
