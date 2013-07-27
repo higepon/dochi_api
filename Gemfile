@@ -46,3 +46,6 @@ gem 'rspec'
 gem 'rspec-rails'
 gem 'json_spec'
 gem 'mysql2'
+
+gem 'yajl-ruby'
+gem 'koala'
