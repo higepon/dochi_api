@@ -9,7 +9,7 @@ describe LoginController do
     end
   end
 
-  it "facebook returns facebook user object" do
+  it "/facebook returns facebook user object" do
     request.accept = "application/json"
     VCR.use_cassette('facebook') do
       post :facebook, { :token => 'test_token' }
@@ -19,9 +19,18 @@ describe LoginController do
     response.body.should have_json_path("email")
   end
 
-  it "facebook returns error if token is not specified" do
+  it "/facebook returns error if token is not specified" do
     request.accept = "application/json"
     post :facebook
     response.response_code.should == 400
+  end
+
+  it "/facebook returns existing user if match" do
+    request.accept = "application/json"
+    VCR.use_cassette('facebook_existing_user') do
+      post :facebook, { :token => 'existing_user_token' }
+    end
+    response.should be_success
+    response.body[:user_id].should == '1'
   end
 end
