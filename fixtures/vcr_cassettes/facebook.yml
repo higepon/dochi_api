@@ -69,7 +69,7 @@ http_interactions:
         School"},{"school":{"id":"218890828131070","name":"\u6176\u61c9\u7fa9\u587e
         \/ Keio University"},"concentration":[{"id":"109279729089828","name":"Physics"}],"type":"College"},{"school":{"id":"112541608759083","name":"Keio
         University"},"year":{"id":"132393000129123","name":"2001"},"concentration":[{"id":"109279729089828","name":"Physics"}],"type":"Graduate
-        School"}],"gender":"male","email":"higepon\u0040gmail.com","timezone":-7,"locale":"ja_JP","languages":[{"id":"109549852396760","name":"Japanese"},{"id":"106059522759137","name":"English"}],"verified":true,"updated_time":"2013-07-21T02:08:35+0000"}'
+        School"}],"gender":"male","email":"taro\u0040gmail.com","timezone":-7,"locale":"ja_JP","languages":[{"id":"109549852396760","name":"Japanese"},{"id":"106059522759137","name":"English"}],"verified":true,"updated_time":"2013-07-21T02:08:35+0000"}'
     http_version: 
   recorded_at: Sat, 27 Jul 2013 22:04:15 GMT
 recorded_with: VCR 2.5.0

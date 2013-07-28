@@ -4,12 +4,19 @@ class LoginController < ApplicationController
     if params[:token]
       graph = Koala::Facebook::API.new(params[:token])
       me = graph.get_object("me")
-      user = User.find_by_fb_id(me["id"])
+      existing_user = User.find_by_fb_id(me["id"])
       # user has already account with facebook
-      if user
-        render json: user
+      if existing_user
+        render json: existing_user
       else
-        render json: me
+        same_email_user = User.find_by_email(me["email"])
+        if same_email_user
+          render json: me
+        else
+          user = User.new(:fb_id => me["id"], :email => me["email"], :name => me["name"])
+          user.save
+          render json: user
+        end
       end
     else
       render json: { :status => :error }, :status => :bad_request

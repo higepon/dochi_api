@@ -43,7 +43,8 @@ describe LoginController do
     end
     response.should be_success
     user = JSON.parse(response.body)
-    user["id"].should equal 1235
+    user["fb_id"].should == "649065487"
+    user["email"].should == "taro@gmail.com"
     User.all.count.should == 2
   end
 
