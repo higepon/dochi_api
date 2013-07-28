@@ -9,11 +9,13 @@ class LoginController < ApplicationController
       if existing_user
         render json: existing_user
       else
+        # user has already account but not connected facebook
         same_email_user = User.find_by_email(me["email"])
         if same_email_user
           same_email_user.fb_id = me["id"]
           same_email_user.save
           render json: same_email_user
+        # new user
         else
           user = User.new(:fb_id => me["id"], :email => me["email"], :name => me["name"])
           user.save
@@ -23,5 +25,7 @@ class LoginController < ApplicationController
     else
       render json: { :status => :error }, :status => :bad_request
     end
+  rescue => e
+      render json: { :status => e }, :status => :bad_request
   end
 end

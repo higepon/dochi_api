@@ -61,4 +61,12 @@ describe LoginController do
     user["email"].should == "john@gmail.com"
   end
 
+  it "/facebook returns error if token is invalid" do
+    request.accept = "application/json"
+    VCR.use_cassette('facebook_invalid') do
+      post :facebook, { :token => 'invalid_token' }
+    end
+    response.response_code.should == 400
+  end
+
 end
