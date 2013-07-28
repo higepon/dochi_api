@@ -5,6 +5,7 @@ class LoginController < ApplicationController
       graph = Koala::Facebook::API.new(params[:token])
       me = graph.get_object("me")
       user = User.find_by_fb_id(me["id"])
+      # user has already account with facebook
       if user
         render json: user
       else

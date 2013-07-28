@@ -34,4 +34,17 @@ describe LoginController do
     user = JSON.parse(response.body)
     user["id"].should equal 1234
   end
+
+  it "/facebook create & returns new user" do
+    request.accept = "application/json"
+    User.all.count.should == 1
+    VCR.use_cassette('facebook') do
+      post :facebook, { :token => 'test_token' }
+    end
+    response.should be_success
+    user = JSON.parse(response.body)
+    user["id"].should equal 1235
+    User.all.count.should == 2
+  end
+
 end
