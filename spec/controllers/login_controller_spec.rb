@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe LoginController do
 
-  it "facebook returns facebook user object" do
-
+  before do
     VCR.configure do |c|
       c.cassette_library_dir = 'fixtures/vcr_cassettes'
       c.hook_into :webmock
     end
+  end
 
+  it "facebook returns facebook user object" do
     request.accept = "application/json"
-
     VCR.use_cassette('facebook') do
       post :facebook, { :token => 'test_token' }
     end
