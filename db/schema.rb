@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725035914) do
+ActiveRecord::Schema.define(:version => 20130728043758) do
 
   create_table "decks", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(:version => 20130725035914) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "email"
+    t.string   "fb_id"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["fb_id"], :name => "index_users_on_fb_id", :unique => true
 
 end

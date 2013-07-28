@@ -4,7 +4,12 @@ class LoginController < ApplicationController
     if params[:token]
       graph = Koala::Facebook::API.new(params[:token])
       me = graph.get_object("me")
-      render json: me
+      user = User.find_by_fb_id(me["id"])
+      if user
+        render json: user
+      else
+        render json: me
+      end
     else
       render json: { :status => :error }, :status => :bad_request
     end

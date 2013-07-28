@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe LoginController do
-
+  fixtures :users
   before do
     VCR.configure do |c|
       c.cassette_library_dir = 'fixtures/vcr_cassettes'
@@ -31,6 +31,7 @@ describe LoginController do
       post :facebook, { :token => 'existing_user_token' }
     end
     response.should be_success
-    response.body[:user_id].should == '1'
+    user = JSON.parse(response.body)
+    user["id"].should equal 1234
   end
 end
