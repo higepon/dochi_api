@@ -11,7 +11,9 @@ class LoginController < ApplicationController
       else
         same_email_user = User.find_by_email(me["email"])
         if same_email_user
-          render json: me
+          same_email_user.fb_id = me["id"]
+          same_email_user.save
+          render json: same_email_user
         else
           user = User.new(:fb_id => me["id"], :email => me["email"], :name => me["name"])
           user.save

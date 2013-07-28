@@ -37,7 +37,7 @@ describe LoginController do
 
   it "/facebook create & returns new user" do
     request.accept = "application/json"
-    User.all.count.should == 1
+    num_user = User.all.count
     VCR.use_cassette('facebook') do
       post :facebook, { :token => 'test_token' }
     end
@@ -45,18 +45,18 @@ describe LoginController do
     user = JSON.parse(response.body)
     user["fb_id"].should == "649065487"
     user["email"].should == "taro@gmail.com"
-    User.all.count.should == 2
+    User.all.count.should == num_user + 1
   end
 
   it "/facebook set fb_id to existing user if it doesn't have it" do
     request.accept = "application/json"
-    User.find_by_email("john@gmail.com").fb_id should be_nil
+    User.find_by_email("john@gmail.com").fb_id.should be_nil
     VCR.use_cassette('facebook2') do
       post :facebook, { :token => 'test_token2' }
     end
     response.should be_success
     user = JSON.parse(response.body)
-    User.find_by_email("john@gmail.com").fb_id should_not be_nil
+    User.find_by_email("john@gmail.com").fb_id.should_not be_nil
     user["fb_id"].should == "649065489"
     user["email"].should == "john@gmail.com"
   end
