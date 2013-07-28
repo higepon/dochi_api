@@ -49,3 +49,5 @@ gem 'mysql2'
 
 gem 'yajl-ruby'
 gem 'koala'
+gem 'vcr'
+gem 'webmock'
