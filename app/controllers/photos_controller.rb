@@ -3,6 +3,7 @@ require 'pp'
 class PhotosController < ApplicationController
   respond_to :html, :json
   skip_before_filter  :verify_authenticity_token
+  before_filter :_login
 
   def index
     @photos = Photo.all
@@ -23,5 +24,16 @@ class PhotosController < ApplicationController
   rescue
     render json: { :status => :error }, :status => :bad_request
   end
+
+private
+  def _login
+    @user = User.find(params[:user_id]) if params[:user_id]
+    if @user && @user.secret == params[:secret]
+      return true
+    else
+      render json: { :status => :forbidden }, :status => :forbidden
+    end
+  end
+
 
 end
