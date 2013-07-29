@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.facebook.com/me?access_token=existing_user_token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Content-Type:
+      - application/json; charset=UTF-8
+      Etag:
+      - '"03f4d21dc65f482d87cf182969885172eb579ef7"'
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Last-Modified:
+      - '2013-07-28T00:01:13+0000'
+      Pragma:
+      - no-cache
+      X-Fb-Rev:
+      - '889688'
+      X-Fb-Debug:
+      - ZcY2jWxubuwoCO1dQi5026XN/fQdw9jeDhnH64D26rQ=
+      Date:
+      - Sun, 28 Jul 2013 04:23:31 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1557'
+    body:
+      encoding: UTF-8
+      string: '{"id":"649065488","name":"Taro Minowa Higepon","first_name":"Taro","middle_name":"Minowa","last_name":"Higepon","link":"https:\/\/www.facebook.com\/higepon","username":"higepon","birthday":"05\/16\/1977","location":{"id":"114952118516947","name":"San
+        Francisco, California"},"bio":"Software Engineer, lead following projects
+        as main developer. Mona (OS), Mosh (Fast Scheme Stack VM Interpreter), Mio
+        (KVS), outputz.com (Social web service).","quotes":"\u7d99\u7d9a\u306f\u529b\u306a\u308a","work":[{"employer":{"id":"134147689947059","name":"Twitter,
+        Inc."},"position":{"id":"109542932398298","name":"Software Engineer"},"start_date":"2012-01-01"},{"employer":{"id":"110092032345954","name":"\u30b5\u30a4\u30dc\u30a6\u30ba"},"position":{"id":"109542932398298","name":"Software
+        Engineer"},"start_date":"2008-01-01","end_date":"2012-01-15"},{"employer":{"id":"107512869279984","name":"Cybozu
+        Labs, Inc"},"position":{"id":"109542932398298","name":"Software Engineer"},"start_date":"2008-01-01","end_date":"2012-01-15"},{"employer":{"id":"101009323273955","name":"IPA
+        Exploratory Software Project"},"position":{"id":"107629839267064","name":"Engineer"},"description":"Scheme
+        shell for Mona OS - Implemented a Scheme shell for Mona OS in C++, which is
+        now the default shell of Mona OS.","start_date":"2006-11-01","end_date":"2007-08-01"},{"employer":{"id":"130630066976252","name":"\u306f\u3066\u306a"},"position":{"id":"109542932398298","name":"Software
+        Engineer"},"start_date":"2005-04-01","end_date":"2007-10-01"},{"employer":{"id":"107138839321074","name":"Hatena"},"position":{"id":"107629839267064","name":"Engineer"},"description":"Hatena
+        RSS - http:\/\/r.hatena.ne.jp\/\r\nImplemented an RSS Reader. It has a good
+        user interface like a TV program schedule table.\r\nHatena RSS is written
+        in Perl, and mod_perl and MySQL are used for the backend.\r\nCrawls about
+        2 millions of feeds per day and has 4 billions of data.\r\n\r\nRimo - http:\/\/rimo.tv\/\r\nRimo
+        is an online video streaming service. You can easily enjoy videos, just as
+        you watch TV programs.\r\nWritten in Ruby on Rails, and MySQL is used for
+        the backend..\r\nAbout 10 thousands unique users per day. ","start_date":"2005-04-01","end_date":"2007-10-01"},{"employer":{"id":"104989136208541","name":"Sony
+        Global Solutions"},"position":{"id":"107629839267064","name":"Engineer"},"description":"Web
+        application, PDF, Excel VBA - Designed and implemented web applications with
+        C, C++ and Java. Used Oracle Data Base and P\/L SQL for the backend.","start_date":"2001-04-01","end_date":"2005-03-01"},{"employer":{"id":"151765521502897","name":"\u30bd\u30cb\u30fc\u30b0\u30ed\u30fc\u30d0\u30eb\u30bd\u30ea\u30e5\u30fc\u30b7\u30e7\u30f3\u30ba"},"position":{"id":"109542932398298","name":"Software
+        Engineer"},"start_date":"2001-01-01","end_date":"0000-00"}],"sports":[{"id":"102173226491776","name":"Soccer"}],"education":[{"school":{"id":"115258925162706","name":"\u5343\u8449\u770c\u7acb\u5343\u8449\u9ad8\u7b49\u5b66\u6821"},"year":{"id":"116962635018500","name":"1996"},"type":"High
+        School"},{"school":{"id":"218890828131070","name":"\u6176\u61c9\u7fa9\u587e
+        \/ Keio University"},"concentration":[{"id":"109279729089828","name":"Physics"}],"type":"College"},{"school":{"id":"112541608759083","name":"Keio
+        University"},"year":{"id":"132393000129123","name":"2001"},"concentration":[{"id":"109279729089828","name":"Physics"}],"type":"Graduate
+        School"}],"gender":"male","email":"higepon\u0040gmail.com","timezone":-7,"locale":"ja_JP","languages":[{"id":"109549852396760","name":"Japanese"},{"id":"106059522759137","name":"English"}],"verified":true,"updated_time":"2013-07-28T00:01:13+0000"}'
+    http_version: 
+  recorded_at: Sun, 28 Jul 2013 04:23:33 GMT
+recorded_with: VCR 2.5.0

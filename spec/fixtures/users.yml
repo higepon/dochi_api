@@ -1,0 +1,12 @@
+taro: # already signup with Facebook integration
+  id: 1234
+  name: "taro"
+  fb_id: 649065488
+  email: higepon@gmail.com
+  secret: abc
+
+john: # already signup but not connected facbook
+  id: 1235
+  name: "john"
+  email: john@gmail.com
+  secret: def
