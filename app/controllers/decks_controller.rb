@@ -25,7 +25,7 @@ class DecksController < ApplicationController
 
   def create
     @deck = Deck.new
-    @deck.user_id = 1234
+    @deck.user_id = @user.id
     @deck.save
     respond_with @deck
   end
