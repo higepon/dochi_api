@@ -1,5 +1,7 @@
 class LoginController < ApplicationController
 
+  skip_before_filter  :verify_authenticity_token
+
   def facebook
     if params[:token]
       graph = Koala::Facebook::API.new(params[:token])
@@ -17,7 +19,7 @@ class LoginController < ApplicationController
           render json: same_email_user
         # new user
         else
-          user = User.new(:fb_id => me["id"], :email => me["email"], :name => me["name"])
+          user = User.new(:fb_id => me["id"], :email => me["email"], :name => me["name"], :secret =>  SecureRandom.urlsafe_base64(nil, false))
           user.save
           render json: user
         end
@@ -26,6 +28,7 @@ class LoginController < ApplicationController
       render json: { :status => :error }, :status => :bad_request
     end
   rescue => e
-      render json: { :status => e }, :status => :bad_request
+    pp e
+    render json: { :status => e }, :status => :bad_request
   end
 end

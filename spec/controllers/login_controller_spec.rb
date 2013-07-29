@@ -9,7 +9,7 @@ describe LoginController do
     end
   end
 
-  it "/facebook returns facebook user object" do
+  it "/facebook returns user object" do
     request.accept = "application/json"
     VCR.use_cassette('facebook') do
       post :facebook, { :token => 'test_token' }
@@ -17,6 +17,7 @@ describe LoginController do
     response.should be_success
     response.body.should have_json_path("name")
     response.body.should have_json_path("email")
+    response.body.should have_json_path("secret")
   end
 
   it "/facebook returns error if token is not specified" do
@@ -45,6 +46,7 @@ describe LoginController do
     user = JSON.parse(response.body)
     user["fb_id"].should == "649065487"
     user["email"].should == "taro@gmail.com"
+    user["email"].should == "taro@gmail.com"
     User.all.count.should == num_user + 1
   end
 
@@ -59,6 +61,7 @@ describe LoginController do
     User.find_by_email("john@gmail.com").fb_id.should_not be_nil
     user["fb_id"].should == "649065489"
     user["email"].should == "john@gmail.com"
+    user["secret"].should_not be_nil
   end
 
   it "/facebook returns error if token is invalid" do

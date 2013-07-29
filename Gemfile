@@ -50,4 +50,6 @@ gem 'mysql2'
 gem 'yajl-ruby'
 gem 'koala'
 gem 'vcr'
-gem 'webmock'
+group :test do
+  gem "webmock"
+end
