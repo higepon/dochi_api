@@ -1,6 +1,7 @@
 class DecksController < ApplicationController
   respond_to :html, :json
   skip_before_filter  :verify_authenticity_token
+  before_filter :_login
 
   def index
     @ds = Deck.all
@@ -27,6 +28,16 @@ class DecksController < ApplicationController
     @deck.user_id = 1234
     @deck.save
     respond_with @deck
+  end
+
+private
+  def _login
+    @user = User.find(params[:user_id]) if params[:user_id]
+    if @user && @user.secret == params[:secret]
+      return true
+    else
+      render json: { :status => :forbidden }, :status => :forbidden
+    end
   end
 
 end
