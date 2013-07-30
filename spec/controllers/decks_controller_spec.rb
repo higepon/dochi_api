@@ -25,4 +25,10 @@ describe DecksController do
     response.body.should have_json_type(String).at_path("0/photos/0/url")
   end
 
+  it "index returns not_found" do
+    request.accept = "application/json"
+    get :index, { :user_id => 99999999, :secret => 'abc' }
+    response.response_code.should == 404
+  end
+
 end

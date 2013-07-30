@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
     else
       render json: { :status => :forbidden }, :status => :forbidden
     end
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { :status => :not_found }, :status => :not_found
   end
 
 end
