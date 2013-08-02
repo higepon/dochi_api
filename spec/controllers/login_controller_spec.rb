@@ -36,18 +36,18 @@ describe LoginController do
     user["id"].should equal 1234
   end
 
-  it "/facebook create & returns new user" do
+  it "/facebook creates and returns new user and fetch friends" do
     request.accept = "application/json"
     num_user = User.all.count
-    VCR.use_cassette('facebook') do
-      post :facebook, { :token => 'test_token' }
+    VCR.use_cassette('facebook_new') do
+      post :facebook, { :token => 'CAAJPeH9eTKIBAFNAgQuk2GVhAt0kfTiAg4ONTFTbDXZBWMicIZCD2kt8HNAwvnhzZBT5AoRJU1WlqJfNZAAv2h47NDZA04eqC8wTB3z25s0rEO3aBVrDkDrAmJxkZAbY2kBrWlxCKpqCdlRZAh1b3nKkCODNoZB4ZCzoZD' }
     end
     response.should be_success
     user = JSON.parse(response.body)
-    user["fb_id"].should == "649065487"
-    user["email"].should == "taro@gmail.com"
-    user["email"].should == "taro@gmail.com"
+    user["fb_id"].should == "100006483456141"
+    user["email"].should == "bvdbtoh_laustein_1375334290@tfbnw.net"
     User.all.count.should == num_user + 1
+    Friend.find_by_src_id(user["id"]).dest_id == "hoge"
   end
 
   it "/facebook set fb_id to existing user if it doesn't have it" do
