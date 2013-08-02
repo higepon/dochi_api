@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.facebook.com/me?access_token=CAAJPeH9eTKIBAFNAgQuk2GVhAt0kfTiAg4ONTFTbDXZBWMicIZCD2kt8HNAwvnhzZBT5AoRJU1WlqJfNZAAv2h47NDZA04eqC8wTB3z25s0rEO3aBVrDkDrAmJxkZAbY2kBrWlxCKpqCdlRZAh1b3nKkCODNoZB4ZCzoZD
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Content-Type:
+      - application/json; charset=UTF-8
+      Etag:
+      - '"9794bff68f055a755efa22c2f0499d952b495f31"'
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Last-Modified:
+      - '2013-08-01T05:18:11+0000'
+      Pragma:
+      - no-cache
+      X-Fb-Rev:
+      - '896365'
+      X-Fb-Debug:
+      - TrpRoqVTChAg75WGn7EojH89YaJrfCY6fsH0Nqp4ej4=
+      Date:
+      - Fri, 02 Aug 2013 04:50:40 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '342'
+    body:
+      encoding: UTF-8
+      string: '{"id":"100006483456141","name":"Will Amfdhcdefada Laustein","first_name":"Will","middle_name":"Amfdhcdefada","last_name":"Laustein","link":"https:\/\/www.facebook.com\/profile.php?id=100006483456141","gender":"male","email":"bvdbtoh_laustein_1375334290\u0040tfbnw.net","timezone":-7,"locale":"ja_JP","updated_time":"2013-08-01T05:18:11+0000"}'
+    http_version: 
+  recorded_at: Fri, 02 Aug 2013 04:50:42 GMT
+recorded_with: VCR 2.5.0
