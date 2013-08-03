@@ -47,7 +47,7 @@ describe LoginController do
     user["fb_id"].should == "100006483456141"
     user["email"].should == "bvdbtoh_laustein_1375334290@tfbnw.net"
     User.all.count.should == num_user + 1
-    Friend.find_by_src_user_id(user["id"]).dest_user_id == "hoge"
+    Friend.find_by_src_user_id(user["id"]).dest_user_id.should == 1236
   end
 
   it "/facebook set fb_id to existing user if it doesn't have it" do
