@@ -9,7 +9,7 @@ describe DecksController do
     response.body.should have_json_path("id")
   end
 
-  it "/create returns error if user_is not specified" do
+  it "/create returns error if user_id is not specified" do
     request.accept = "application/json"
     post :create
     response.response_code.should == 403
