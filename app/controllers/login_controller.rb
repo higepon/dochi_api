@@ -16,6 +16,7 @@ class LoginController < ApplicationController
         if same_email_user
           same_email_user.fb_id = me["id"]
           same_email_user.save
+          update_friends(same_email_user, graph)
           render json: same_email_user
         # new user
         else

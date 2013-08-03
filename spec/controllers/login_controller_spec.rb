@@ -62,10 +62,12 @@ describe LoginController do
     end
     response.should be_success
     user = JSON.parse(response.body)
-    User.find_by_email("john@gmail.com").fb_id.should_not be_nil
+    john.reload
+    john.fb_id.should_not be_nil
     user["fb_id"].should == "649065489"
     user["email"].should == "john@gmail.com"
     user["secret"].should_not be_nil
+    Friend.find_by_src_user_id(john.id).dest_user_id.should == 1236
   end
 
   it "/facebook returns error if token is invalid" do
