@@ -28,12 +28,16 @@ describe LoginController do
 
   it "/facebook returns existing user if match" do
     request.accept = "application/json"
+
+    Friend.find_by_src_user_id(1234).should be_nil
+
     VCR.use_cassette('facebook_existing_user') do
       post :facebook, { :token => 'existing_user_token' }
     end
     response.should be_success
     user = JSON.parse(response.body)
     user["id"].should equal 1234
+    Friend.find_by_src_user_id(user["id"]).dest_user_id.should == 1236
   end
 
   it "/facebook creates and returns new user and fetch friends" do

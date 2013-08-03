@@ -9,6 +9,7 @@ class LoginController < ApplicationController
       existing_user = User.find_by_fb_id(me["id"])
       # user has already account with facebook
       if existing_user
+        update_friends(existing_user, graph)
         render json: existing_user
       else
         # user has already account but not connected facebook
