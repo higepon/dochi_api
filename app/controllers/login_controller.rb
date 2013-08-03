@@ -21,6 +21,7 @@ class LoginController < ApplicationController
         else
           user = User.new(:fb_id => me["id"], :email => me["email"], :name => me["name"], :secret =>  SecureRandom.urlsafe_base64(nil, false))
           user.save
+          update_friends(user, graph)
           render json: user
         end
       end
@@ -30,5 +31,16 @@ class LoginController < ApplicationController
   rescue => e
     pp e
     render json: { :status => e }, :status => :bad_request
+  end
+
+private
+  def update_friends(src_user, graph)
+    friends = graph.get_connections("me", "friends")
+    fb_ids = friends.map {|f| f["id"] }
+    users = User.find_all_by_fb_id(fb_ids)
+    users.each {|u|
+      friend = Friend.new(:src_user_id => src_user.id, :dest_user_id => u.id)
+      friend.save
+    }
   end
 end

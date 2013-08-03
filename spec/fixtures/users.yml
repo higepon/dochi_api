@@ -10,3 +10,9 @@ john: # already signup but not connected facbook
   name: "john"
   email: john@gmail.com
   secret: def
+
+nancy: # facebook friend test
+  id: 1236
+  name: "Nancy Amfebadcjccb Romansen"
+  fb_id: 100006521430332
+  email: "ljrnjeq_romansen_1375414048@tfbnw.net"
