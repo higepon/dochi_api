@@ -52,7 +52,11 @@ describe LoginController do
 
   it "/facebook set fb_id to existing user if it doesn't have it" do
     request.accept = "application/json"
-    User.find_by_email("john@gmail.com").fb_id.should be_nil
+
+    john = User.find_by_email("john@gmail.com")
+    john.fb_id.should be_nil
+    Friend.find_by_src_user_id(john.id).should be_nil
+
     VCR.use_cassette('facebook2') do
       post :facebook, { :token => 'test_token2' }
     end
