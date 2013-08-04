@@ -38,6 +38,7 @@ describe LoginController do
     response.should be_success
     user = JSON.parse(response.body)
     user["id"].should equal 1234
+    user["secret"].should == "abc"
     Friend.find_by_src_user_id(user["id"]).dest_user_id.should == 1236
   end
 
@@ -51,6 +52,7 @@ describe LoginController do
     user = JSON.parse(response.body)
     user["fb_id"].should == "100006483456141"
     user["email"].should == "bvdbtoh_laustein_1375334290@tfbnw.net"
+    user["secret"].should_not be_nil
     User.all.count.should == num_user + 1
     Friend.find_by_src_user_id(user["id"]).dest_user_id.should == 1236
   end
