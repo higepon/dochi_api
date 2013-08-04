@@ -16,12 +16,18 @@ class LoginController < ApplicationController
         same_email_user = User.find_by_email(me["email"])
         if same_email_user
           same_email_user.fb_id = me["id"]
+          same_email_user.avatar_url = "http://graph.facebook.com/#{me["id"]}/picture?type=small"
           same_email_user.save
           update_friends(same_email_user, graph)
           render json: same_email_user
         # new user
         else
-          user = User.new(:fb_id => me["id"], :email => me["email"], :name => me["name"], :secret =>  SecureRandom.urlsafe_base64(nil, false))
+          avatar_url = "http://graph.facebook.com/#{me["id"]}/picture?type=small"
+          user = User.new(:fb_id => me["id"],
+                          :email => me["email"],
+                          :name => me["name"],
+                          :secret => SecureRandom.urlsafe_base64(nil, false),
+                          :avatar_url => avatar_url)
           user.save
           update_friends(user, graph)
           render json: user
