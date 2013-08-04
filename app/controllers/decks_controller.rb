@@ -9,18 +9,9 @@ class DecksController < ApplicationController
     user_ids << @user.id
       
     @ds = Deck.find_all_by_user_id(user_ids)
-    @decks = []
-    @ds.each {|d|
-      photos = []
-      d.photos.each {|p|
-        photo = {}
-        photo[:url] = p.photo_image.thumb('320x480').url
-        photos.push(photo)
-      }
-      deck = { :photos => photos, :user_id => d.user_id, :user_name => d.user.name }
-      @decks.push(deck)
-    }
-    respond_with @decks
+    respond_with(@ds, {:only => [:id],
+                       :include => [{:photos => {:only => [:id, :name], :methods => [:url]}},
+                                    {:user => {:only => [:id, :name, :avatar_url]}}]})
   end
 
   def new

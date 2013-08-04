@@ -11,4 +11,8 @@ class Photo < ActiveRecord::Base
      raise 'deck_id cannot be nil'
    end
   end
+
+  def url
+    self.photo_image.thumb('320x480').url
+  end
 end

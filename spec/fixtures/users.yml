@@ -3,16 +3,19 @@ taro: # already signup with Facebook integration
   name: "taro"
   fb_id: 649065488
   email: higepon@gmail.com
+  avatar_url: "http://example.com/taro.jpg"
   secret: abc
 
 john: # already signup but not connected facbook
   id: 1235
   name: "john"
   email: john@gmail.com
+  avatar_url: "http://example.com/taro.jpg"
   secret: def
 
 nancy: # facebook friend test
   id: 1236
   name: "Nancy Amfebadcjccb Romansen"
   fb_id: 100006521430332
+  avatar_url: "http://example.com/taro.jpg"
   email: "ljrnjeq_romansen_1375414048@tfbnw.net"
