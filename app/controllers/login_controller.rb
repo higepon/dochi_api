@@ -16,13 +16,13 @@ class LoginController < ApplicationController
         same_email_user = User.find_by_email(me["email"])
         if same_email_user
           same_email_user.fb_id = me["id"]
-          same_email_user.avatar_url = "http://graph.facebook.com/#{me["id"]}/picture?type=small"
+          same_email_user.avatar_url = fb_avatar_url(me["id"])
           same_email_user.save
           update_friends(same_email_user, graph)
           render json: same_email_user
         # new user
         else
-          avatar_url = "http://graph.facebook.com/#{me["id"]}/picture?type=small"
+          avatar_url = fb_avatar_url(me["id"])
           user = User.new(:fb_id => me["id"],
                           :email => me["email"],
                           :name => me["name"],
@@ -42,6 +42,10 @@ class LoginController < ApplicationController
   end
 
 private
+  def fb_avatar_url(fb_id)
+    "http://graph.facebook.com/#{fb_id}/picture?type=small"
+  end
+
   def update_friends(src_user, graph)
     friends = graph.get_connections("me", "friends")
     fb_ids = friends.map {|f| f["id"] }
