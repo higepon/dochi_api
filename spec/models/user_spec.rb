@@ -13,10 +13,10 @@ describe User do
     it "doesn't nothing it exists" do
     end
 
-    it "raise error if deck is not specified"
+    it "raise error if deck is not specified" do
     end
   end
-
+  
   describe "#unlike!" do
   end
 end
