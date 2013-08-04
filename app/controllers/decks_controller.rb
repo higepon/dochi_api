@@ -7,7 +7,7 @@ class DecksController < ApplicationController
     friends = Friend.find_all_by_src_user_id(@user.id)
     user_ids = friends.map {|f| f.dest_user_id }
     user_ids << @user.id
-      
+
     @ds = Deck.find_all_by_user_id(user_ids)
     respond_with(@ds, {:only => [:id],
                        :include => [{:photos => {:only => [:id, :name], :methods => [:url]}},
