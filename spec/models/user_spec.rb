@@ -9,5 +9,14 @@ describe User do
       like.user_id.should_not be_nil
       like.deck_id.should == deck.id
     end
+
+    it "doesn't nothing it exists" do
+    end
+
+    it "raise error if deck is not specified"
+    end
+  end
+
+  describe "#unlike!" do
   end
 end
