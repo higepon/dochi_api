@@ -18,6 +18,7 @@ describe LoginController do
     response.body.should have_json_path("name")
     response.body.should have_json_path("email")
     response.body.should have_json_path("secret")
+    response.body.should have_json_path("avatar_small_url")
   end
 
   it "/facebook returns error if token is not specified" do
@@ -71,6 +72,7 @@ describe LoginController do
     user["fb_id"].should == "649065489"
     user["email"].should == "john@gmail.com"
     user["secret"].should_not be_nil
+    user["avatar_small_url"].should_not be_nil
     Friend.find_by_src_user_id(john.id).dest_user_id.should == 1236
   end
 

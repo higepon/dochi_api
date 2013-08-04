@@ -4,7 +4,11 @@ class DecksController < ApplicationController
   before_filter :_login
 
   def index
-    @ds = Deck.all
+    friends = Friend.find_all_by_src_user_id(@user.id)
+    user_ids = friends.map {|f| f.dest_user_id }
+    user_ids << @user.id
+      
+    @ds = Deck.find_all_by_user_id(user_ids)
     @decks = []
     @ds.each {|d|
       photos = []
