@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe User do
-  fixtures :likes, :decks
-
   describe "#like!" do
+    fixtures :likes, :decks
     it "creates & returns new like model if it doesn't exist" do
       not_liked_yet_deck_id = 3
       deck = Deck.find(not_liked_yet_deck_id)
@@ -18,7 +17,6 @@ describe User do
     end
 
     it "doesn't nothing if it exists" do
-      pp Like.all
       deck_id = 1
       user_id = 1234
       Like.where(:user_id => user_id, :deck_id => deck_id).first.should_not be_nil
@@ -31,11 +29,22 @@ describe User do
 
       user.like!(deck).should be_nil
     end
-
-    it "raise error if deck is not specified" do
-    end
   end
-  
+
   describe "#unlike!" do
+    fixtures :likes, :decks
+
+    it "removes like if it exists" do
+      deck_id = 1
+      user_id = 1234
+      Like.where(:user_id => user_id, :deck_id => deck_id).first.should_not be_nil
+      
+      user = User.find(user_id)
+      deck = Deck.find(deck_id)
+      user.unlike!(deck)
+
+      Like.where(:user_id => user_id, :deck_id => deck_id).first.should be_nil
+    end
+
   end
 end
