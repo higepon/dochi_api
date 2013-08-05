@@ -5,3 +5,7 @@ one:
 two:
   id: 2
   user_id: 1234
+
+deck_not_liked_yet:
+  id: 3
+  user_id: 1234
