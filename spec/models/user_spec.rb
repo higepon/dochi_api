@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe User do
   fixtures :likes, :decks
+
   describe "#like!" do
     it "creates & returns new like model if it doesn't exist" do
       not_liked_yet_deck_id = 3
@@ -17,11 +18,15 @@ describe User do
     end
 
     it "doesn't nothing if it exists" do
-      liked_deck_id = 1
-      deck = Deck.find(liked_deck_id)
+      pp Like.all
+      deck_id = 1
+      user_id = 1234
+      Like.where(:user_id => user_id, :deck_id => deck_id).first.should_not be_nil
+
+      deck = Deck.find(deck_id)
       deck.should_not be_nil
       
-      user = User.find(1234)
+      user = User.find(user_id)
       user.should_not be_nil
 
       user.like!(deck).should be_nil

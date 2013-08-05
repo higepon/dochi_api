@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20130804164828) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "likes", ["deck_id", "user_id"], :name => "index_likes_on_deck_id_and_user_id"
+  add_index "likes", ["deck_id", "user_id"], :name => "index_likes_on_deck_id_and_user_id", :unique => true
 
   create_table "photos", :force => true do |t|
     t.string   "name"

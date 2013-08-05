@@ -10,5 +10,7 @@ class User < ActiveRecord::Base
     like = Like.new(:deck_id => deck.id, :user_id => self.id)
     like.save
     like
+  rescue 
+    nil
   end
 end
