@@ -32,4 +32,10 @@ describe DecksController do
     response.response_code.should == 404
   end
 
+  it "like likes deck" do
+    fixtures :likes, :decks
+    request.accept = "application/json"
+    post :like, { :user_id => 1234, :secret => 'abc', "dock[id]" => 1234}
+    response.should be_success
+  end
 end
