@@ -5,6 +5,7 @@ class CreateLike < ActiveRecord::Migration
       t.integer :user_id
       t.timestamps
     end
+    add_index :likes, [:photo_id, :user_id], :unique => true
   end
 
   def down
