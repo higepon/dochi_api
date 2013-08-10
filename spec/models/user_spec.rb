@@ -1,6 +1,19 @@
 require 'spec_helper'
 
 describe User do
+  describe "#like!" do
+    context "when it has not been liked yet" do
+      it "should create and returns new like" do
+        not_liked_photo_id = 100
+        photo = Photo.find(not_liked_photo_id)
+        user = User.first
+        like = user.like!(photo)
+        like.user_id.should user.id
+        like.user_id.should == photo.id
+      end
+    end
+  end
+
   # describe "#like!" do
   #   fixtures :likes, :decks
   #   it "creates & returns new like model if it doesn't exist" do
