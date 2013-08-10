@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe PhotosController do
-  before do
-    @file =  Rack::Test::UploadedFile.new('spec/fixtures/keiko.jpg', 'image/jpg')
-  end
-
   describe "index" do
     it "should get index" do
       request.accept = "application/json"
@@ -14,6 +10,10 @@ describe PhotosController do
   end
 
   describe "create" do
+    before do
+      @file =  Rack::Test::UploadedFile.new('spec/fixtures/keiko.jpg', 'image/jpg')
+    end
+
     it "should upload two photos" do
       request.accept = "application/json"
       post :create, :user_id => 1234, :secret => 'abc', :photo0 => { :photo_image => @file, :name => 'saeko', :deck_id => 1 }, :photo1 => { :photo_image => @file, :name => 'jun', :deck_id => 2 }
