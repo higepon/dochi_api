@@ -9,6 +9,17 @@ describe PhotosController do
     end
   end
 
+  describe "like" do
+    it "should like the photo and return photo as json" do
+      request.accept = "application/json"
+      post :like, :user_id => 1234, :secret => 'abc', :photo_id => 101
+      response.should be_success
+      response.body.should have_json_type(Integer).at_path("id")
+      response.body.should have_json_type(Array).at_path("likes")
+      response.body.should have_json_type(Integer).at_path("likes/0/id")
+    end
+  end
+
   describe "create" do
     before do
       @file =  Rack::Test::UploadedFile.new('spec/fixtures/keiko.jpg', 'image/jpg')
