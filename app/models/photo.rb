@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
   belongs_to :deck
+  has_many :likes
   attr_accessible :name, :photo_image_uid, :photo_image, :deck_id
   image_accessor :photo_image
 

@@ -25,4 +25,11 @@ class PhotosController < ApplicationController
     render json: { :status => :error }, :status => :bad_request
   end
 
+  def like
+    photo = Photo.find(params[:photo_id])
+    @user.like!(photo)
+    respond_with(photo,
+                 {:only => [:id],
+                   :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name]}}, :only => [:id, :user]}}]})
+  end
 end

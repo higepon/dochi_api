@@ -25,9 +25,9 @@ class DecksController < ApplicationController
     respond_with @deck
   end
 
-  def like
-    deck = Deck.find(params[:deck_id])
-    @user.like!(deck)
-    respond_with deck
-  end
+  # def like
+  #   deck = Deck.find(params[:deck_id])
+  #   @user.like!(deck)
+  #   respond_with { :ok => :ok }
+  # end
 end

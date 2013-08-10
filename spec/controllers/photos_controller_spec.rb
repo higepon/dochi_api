@@ -17,6 +17,10 @@ describe PhotosController do
       response.body.should have_json_type(Integer).at_path("id")
       response.body.should have_json_type(Array).at_path("likes")
       response.body.should have_json_type(Integer).at_path("likes/0/id")
+      response.body.should have_json_type(Hash).at_path("likes/0/user")
+      response.body.should have_json_type(String).at_path("likes/0/user/name")
+      response.body.should have_json_type(String).at_path("likes/0/user/avatar_url")
+      response.body.should_not have_json_path("likes/0/user/secret")
     end
   end
 
