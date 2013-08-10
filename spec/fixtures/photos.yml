@@ -17,3 +17,8 @@ two:
   name: MyString
   photo_image_uid: MyString
   deck_id: 1
+
+not-liked yet:
+  id: 100
+  name: "100"
+  photo_image_uid: "100"

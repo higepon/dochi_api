@@ -8,8 +8,8 @@ describe User do
         photo = Photo.find(not_liked_photo_id)
         user = User.first
         like = user.like!(photo)
-        like.user_id.should user.id
-        like.user_id.should == photo.id
+        like.user_id.should == user.id
+        like.photo_id.should == photo.id
       end
     end
   end

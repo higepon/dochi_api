@@ -6,12 +6,12 @@ class User < ActiveRecord::Base
     graph.get_object("me")
   end
 
-  def like!(deck)
-  #   like = Like.new(:deck_id => deck.id, :user_id => self.id)
-  #   like.save
-  #   like
-  # rescue 
-  #   nil
+  def like!(photo)
+    like = Like.new(:photo_id => photo.id, :user_id => self.id)
+    like.save
+    like
+  rescue 
+    nil
   end
 
   def unlike!(deck)
