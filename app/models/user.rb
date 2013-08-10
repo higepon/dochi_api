@@ -7,16 +7,15 @@ class User < ActiveRecord::Base
   end
 
   def like!(deck)
-    like = Like.new(:deck_id => deck.id, :user_id => self.id)
-    like.save
-    like
-  rescue 
-    nil
+  #   like = Like.new(:deck_id => deck.id, :user_id => self.id)
+  #   like.save
+  #   like
+  # rescue 
+  #   nil
   end
 
   def unlike!(deck)
-    like = Like.where(:deck_id => deck.id, :user_id => self.id).first
-    like.destroy if like
+    # like = Like.where(:deck_id => deck.id, :user_id => self.id).first
+    # like.destroy if like
   end
-
 end
