@@ -14,13 +14,14 @@ describe PhotosController do
       request.accept = "application/json"
       post :like, :user_id => 1234, :secret => 'abc', :photo_id => 101
       response.should be_success
-      response.body.should have_json_type(Integer).at_path("id")
-      response.body.should have_json_type(Array).at_path("likes")
-      response.body.should have_json_type(Integer).at_path("likes/0/id")
-      response.body.should have_json_type(Hash).at_path("likes/0/user")
-      response.body.should have_json_type(String).at_path("likes/0/user/name")
-      response.body.should have_json_type(String).at_path("likes/0/user/avatar_url")
-      response.body.should_not have_json_path("likes/0/user/secret")
+      body = response.body
+      body.should have_json_type(Integer).at_path("id")
+      body.should have_json_type(Array).at_path("likes")
+      body.should have_json_type(Integer).at_path("likes/0/id")
+      body.should have_json_type(Hash).at_path("likes/0/user")
+      body.should have_json_type(String).at_path("likes/0/user/name")
+      body.should have_json_type(String).at_path("likes/0/user/avatar_url")
+      body.should_not have_json_path("likes/0/user/secret")
     end
   end
 
