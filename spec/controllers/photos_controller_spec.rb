@@ -23,6 +23,14 @@ describe PhotosController do
       body.should have_json_type(String).at_path("likes/0/user/avatar_url")
       body.should_not have_json_path("likes/0/user/secret")
     end
+
+    context "when it has already liked" do
+      it "should return error as json" do
+        request.accept = "application/json"
+        post :like, :user_id => 1234, :secret => 'abc', :photo_id => 100
+        response.response_code.should == 400
+      end
+    end
   end
 
   describe "create" do
