@@ -9,9 +9,8 @@ class User < ActiveRecord::Base
   def like!(photo)
     like = Like.new(:photo_id => photo.id, :user_id => self.id)
     like.save
-    like
-  rescue 
-    nil
+  rescue
+    false
   end
 
   def unlike!(deck)

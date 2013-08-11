@@ -10,9 +10,10 @@ describe PhotosController do
   end
 
   describe "like" do
+    fixtures :likes, :photos
     it "should like the photo and return photo as json" do
       request.accept = "application/json"
-      post :like, :user_id => 1234, :secret => 'abc', :photo_id => 101
+      post :like, :user_id => 1234, :secret => 'abc', :photo_id => 100
       response.should be_success
       body = response.body
       body.should have_json_type(Integer).at_path("id")
@@ -27,7 +28,8 @@ describe PhotosController do
     context "when it has already liked" do
       it "should return error as json" do
         request.accept = "application/json"
-        post :like, :user_id => 1234, :secret => 'abc', :photo_id => 100
+        post :like, :user_id => 1234, :secret => 'abc', :photo_id => 101
+        response.body.should have_json_path("status")
         response.response_code.should == 400
       end
     end

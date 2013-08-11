@@ -8,9 +8,7 @@ describe User do
         not_liked_photo_id = 100
         photo = Photo.find(not_liked_photo_id)
         user = User.first
-        like = user.like!(photo)
-        like.user_id.should == user.id
-        like.photo_id.should == photo.id
+        like = user.like!(photo).should be_true
       end
     end
     context "when it has already been liked" do
@@ -18,7 +16,7 @@ describe User do
         liked_photo_id = 101
         photo = Photo.find(liked_photo_id)
         user = User.find(1234)
-        user.like!(photo).should be_nil
+        user.like!(photo).should be_false
       end
     end
   end

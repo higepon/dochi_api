@@ -27,9 +27,12 @@ class PhotosController < ApplicationController
 
   def like
     photo = Photo.find(params[:photo_id])
-    @user.like!(photo)
-    respond_with(photo,
-                 {:only => [:id],
-                   :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name]}}, :only => [:id, :user]}}]})
+    if @user.like!(photo)
+      respond_with(photo,
+                   {:only => [:id],
+                     :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name]}}, :only => [:id, :user]}}]})
+    else
+      render json: { :status => "already liked" }, :status => :bad_request
+    end
   end
 end
