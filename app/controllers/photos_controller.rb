@@ -32,7 +32,10 @@ class PhotosController < ApplicationController
                    {:only => [:id],
                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
     else
-      render json: { :status => "already liked" }, :status => :bad_request
+      @user.unlike!(photo)
+      respond_with(photo.reload,
+                   {:only => [:id],
+                     :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
     end
   end
 end

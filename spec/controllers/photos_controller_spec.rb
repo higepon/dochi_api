@@ -16,7 +16,6 @@ describe PhotosController do
       post :like, :user_id => 1234, :secret => 'abc', :photo_id => 100
       response.should be_success
       body = response.body
-      puts body
       body.should have_json_type(Integer).at_path("id")
       body.should have_json_type(Array).at_path("likes")
       body.should have_json_type(Integer).at_path("likes/0/id")
@@ -28,11 +27,11 @@ describe PhotosController do
     end
 
     context "when it has already liked" do
-      it "should return error as json" do
+      it "should unlike it" do
         request.accept = "application/json"
+        Like.where(:user_id => 1234, :photo_id => 101).should_not be_empty
         post :like, :user_id => 1234, :secret => 'abc', :photo_id => 101
-        response.body.should have_json_path("status")
-        response.response_code.should == 400
+        Like.where(:user_id => 1234, :photo_id => 101).should be_empty
       end
     end
   end

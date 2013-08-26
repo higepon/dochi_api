@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
     false
   end
 
-  def unlike!(deck)
-    # like = Like.where(:deck_id => deck.id, :user_id => self.id).first
-    # like.destroy if like
+  def unlike!(photo)
+    like = Like.where(:photo_id => photo.id, :user_id => self.id).first
+    like.destroy if like
   end
 end
