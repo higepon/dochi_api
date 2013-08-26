@@ -29,12 +29,12 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:photo_id])
     if @user.like!(photo)
       respond_with(photo,
-                   {:only => [:id],
+                   {:only => [:id], :methods => [:url],
                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
     else
       @user.unlike!(photo)
       respond_with(photo.reload,
-                   {:only => [:id],
+                   {:only => [:id], :methods => [:url],
                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
     end
   end
