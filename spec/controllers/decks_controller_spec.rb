@@ -19,11 +19,19 @@ describe DecksController do
     request.accept = "application/json"
     get :index, { :user_id => 1234, :secret => 'abc' }
     response.should be_success
-    response.body.should have_json_type(Array).at_path("0/photos")
-    response.body.should have_json_type(Integer).at_path("0/user/id")
-    response.body.should have_json_type(String).at_path("0/user/avatar_url")
-    response.body.should have_json_type(String).at_path("0/user/name")
-    response.body.should have_json_type(String).at_path("0/photos/0/url")
+    body = response.body
+    body.should have_json_type(Array).at_path("0/photos")
+    body.should have_json_type(Integer).at_path("0/user/id")
+    body.should have_json_type(String).at_path("0/user/avatar_url")
+    body.should have_json_type(String).at_path("0/user/name")
+    body.should have_json_type(String).at_path("0/photos/0/url")
+    body.should have_json_type(Array).at_path("0/photos/0/likes")
+    body.should have_json_type(Integer).at_path("0/photos/0/likes/0/id")
+    body.should have_json_type(Hash).at_path("0/photos/0/likes/0/user")
+    body.should have_json_type(String).at_path("0/photos/0/likes/0/user/name")
+    body.should have_json_type(Integer).at_path("0/photos/0/likes/0/user/id")
+    body.should have_json_type(String).at_path("0/photos/0/likes/0/user/avatar_url")
+    body.should_not have_json_path("0/photos/0/likes/0/user/secret")
   end
 
   it "index returns not_found" do

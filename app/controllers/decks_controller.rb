@@ -10,7 +10,10 @@ class DecksController < ApplicationController
 
     @ds = Deck.find_all_by_user_id(user_ids)
     respond_with(@ds, {:only => [:id],
-                       :include => [{:photos => {:only => [:id, :name], :methods => [:url]}},
+                       :include => [{:photos => {:only => [:id, :name],
+                                                 :methods => [:url], 
+                                                 :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}},
+                                                               :only => [:id, :user]}}]}},
                                     {:user => {:only => [:id, :name, :avatar_url]}}]})
   end
 
