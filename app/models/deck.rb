@@ -3,7 +3,7 @@ class Deck < ActiveRecord::Base
   belongs_to :user
   include ActionView::Helpers::DateHelper
   def distance_of_created
-    distance_of_time_in_words(created_at)
+    distance_of_time_in_words(created_at, Time.now)
   end
 
 end
