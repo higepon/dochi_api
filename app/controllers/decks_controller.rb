@@ -9,7 +9,7 @@ class DecksController < ApplicationController
     user_ids << @user.id
 
     @ds = Deck.find_all_by_user_id(user_ids)
-    respond_with(@ds, {:only => [:id],
+    respond_with(@ds, {:only => [:id], :methods => [:distance_of_created],
                        :include => [{:photos => {:only => [:id, :name],
                                                  :methods => [:url], 
                                                  :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}},
