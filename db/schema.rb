@@ -11,13 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902030740) do
+ActiveRecord::Schema.define(:version => 20130902230100) do
 
   create_table "decks", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
+
+  create_table "devices", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "devices", ["token", "user_id"], :name => "index_devices_on_token_and_user_id", :unique => true
 
   create_table "friends", :force => true do |t|
     t.integer  "src_user_id"
