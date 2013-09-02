@@ -50,6 +50,19 @@ describe PhotosController do
       Photo.find_by_name("saeko").should_not be_nil
       Photo.find_by_name("jun").should_not be_nil
     end
+
+    it "should send push notification to friends" do
+      request.accept = "application/json"
+      post :create, :user_id => 1234, :secret => 'abc', :photo0 => { :photo_image => @file, :name => 'saeko', :deck_id => 1 }, :photo1 => { :photo_image => @file, :name => 'jun', :deck_id => 2 }
+      response.should be_success
+      creator = User.find(1234)
+      friend = User.find(1235)
+      device_token = friend.devices[0]
+      notification = Rapns::Apns::Notification.find_by_device_token(device_token)
+      notification.should_not be_nil
+      notification.delivered.should be_false
+    end
+
     context "when user_id not specified" do
       it "should not be able to upload two photos" do
         request.accept = "application/json"
@@ -57,6 +70,7 @@ describe PhotosController do
         response.response_code.should == 403
       end
     end
+
     context "when deck_id not specified" do
       it "should raise error" do
         request.accept = "application/json"
