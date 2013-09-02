@@ -20,8 +20,20 @@ class PhotosController < ApplicationController
     @photo0.save
     @photo1 = Photo.new(params[:photo1])
     @photo1.save
+    friends = @user.friends.map {|f| User.find(f.dest_user_id) }
+    devices = friends.map {|f| f.devices }.flatten
+    devices.each {|d|
+      n = Rapns::Apns::Notification.new
+      n.app = Rapns::Apns::App.find_by_name("Dochi")
+      puts "dDDDDD$#{d.token}"
+      n.device_token = d.token
+      n.alert = "app created"
+      n.attributes_for_device = {:foo => :bar}
+      n.save!
+    }
     render json: { :status => :ok }
-  rescue
+  rescue => e
+    puts e
     render json: { :status => :error }, :status => :bad_request
   end
 

@@ -16,7 +16,7 @@ describe PhotosController do
       post :like, :user_id => 1234, :secret => 'abc', :photo_id => 100
       response.should be_success
       body = response.body
-      puts body
+#      puts body
       body.should have_json_type(Integer).at_path("id")
       body.should have_json_type(Array).at_path("likes")
       body.should have_json_type(Integer).at_path("likes/0/id")
@@ -51,16 +51,21 @@ describe PhotosController do
       Photo.find_by_name("jun").should_not be_nil
     end
 
-    it "should send push notification to friends" do
-      request.accept = "application/json"
-      post :create, :user_id => 1234, :secret => 'abc', :photo0 => { :photo_image => @file, :name => 'saeko', :deck_id => 1 }, :photo1 => { :photo_image => @file, :name => 'jun', :deck_id => 2 }
-      response.should be_success
-      creator = User.find(1234)
-      friend = User.find(1235)
-      device_token = friend.devices[0]
-      notification = Rapns::Apns::Notification.find_by_device_token(device_token)
-      notification.should_not be_nil
-      notification.delivered.should be_false
+    describe "push notifications" do
+      fixtures :friends, :users, :devices
+      it "should send push notification to friends" do
+        request.accept = "application/json"
+        post :create, :user_id => 1234, :secret => 'abc', :photo0 => { :photo_image => @file, :name => 'saeko', :deck_id => 1 }, :photo1 => { :photo_image => @file, :name => 'jun', :deck_id => 2 }
+        response.should be_success
+        creator = User.find(1234)
+        friend = User.find(1235)
+        device_token = friend.devices[0].token
+        pp Rapns::Apns::Notification.all
+        pp "devices=#{device_token}"
+        notification = Rapns::Apns::Notification.find_by_device_token(device_token)
+        notification.should_not be_nil
+        notification.delivered.should be_false
+      end
     end
 
     context "when user_id not specified" do
