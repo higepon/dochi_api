@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   respond_to :html, :json
   skip_before_filter  :verify_authenticity_token
   before_filter :_login
-
+  
   def index
     @photos = Photo.all
     respond_with @photos
@@ -20,16 +20,8 @@ class PhotosController < ApplicationController
     @photo0.save
     @photo1 = Photo.new(params[:photo1])
     @photo1.save
-    friends = @user.friends.map {|f| User.find(f.dest_user_id) }
-    devices = friends.map {|f| f.devices }.flatten
-    devices.each {|d|
-      n = Rapns::Apns::Notification.new
-      n.app = Rapns::Apns::App.find_by_name("Dochi")
-      n.device_token = d.token
-      n.alert = "#{@user.name} wants to check you new photos!"
-      n.attributes_for_device = {:deck_id => @photo0.deck_id}
-      n.save!
-    }
+    push_to_friends!("#{@user.name} wants to check you new photos!",
+                     {:deck_id => @photo0.deck_id})
     render json: { :status => :ok }
   rescue => e
     puts e
@@ -48,5 +40,19 @@ class PhotosController < ApplicationController
                    {:only => [:id], :methods => [:url],
                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
     end
+  end
+
+private
+  def push_to_friends!(alert, attributes)
+    friends = @user.friends.map {|f| User.find(f.dest_user_id) }
+    devices = friends.map {|f| f.devices }.flatten
+    devices.each {|d|
+      n = Rapns::Apns::Notification.new
+      n.app = Rapns::Apns::App.find_by_name("Dochi")
+      n.device_token = d.token
+      n.alert = alert
+      n.attributes_for_device = attributes
+      n.save!
+    }
   end
 end
