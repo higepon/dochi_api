@@ -25,10 +25,9 @@ class PhotosController < ApplicationController
     devices.each {|d|
       n = Rapns::Apns::Notification.new
       n.app = Rapns::Apns::App.find_by_name("Dochi")
-      puts "dDDDDD$#{d.token}"
       n.device_token = d.token
-      n.alert = "app created"
-      n.attributes_for_device = {:foo => :bar}
+      n.alert = "#{@user.name} wants to check you new photos!"
+      n.attributes_for_device = {:deck_id => @photo0.deck_id}
       n.save!
     }
     render json: { :status => :ok }

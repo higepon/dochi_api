@@ -60,10 +60,10 @@ describe PhotosController do
         creator = User.find(1234)
         friend = User.find(1235)
         device_token = friend.devices[0].token
-        pp Rapns::Apns::Notification.all
-        pp "devices=#{device_token}"
         notification = Rapns::Apns::Notification.find_by_device_token(device_token)
         notification.should_not be_nil
+        notification.alert.should == "taro wants to check you new photos!"
+        notification.attributes_for_device.should == {"deck_id" => 1}
         notification.delivered.should be_false
       end
     end
