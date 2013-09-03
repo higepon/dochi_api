@@ -55,3 +55,4 @@ group :test do
   gem 'watchr'
 end
 gem 'rapns'
+gem 'spork', '~> 0.9.0.rc'
