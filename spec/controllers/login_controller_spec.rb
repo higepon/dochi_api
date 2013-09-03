@@ -30,7 +30,7 @@ describe LoginController do
   it "/facebook returns existing user if match" do
     request.accept = "application/json"
 
-    Friend.find_by_src_user_id(1234).should be_nil
+    Friend.where(:src_user_id => 1234, :dest_user_id => 1236).should be_empty
 
     VCR.use_cassette('facebook_existing_user') do
       post :facebook, { :token => 'existing_user_token' }
@@ -39,7 +39,7 @@ describe LoginController do
     user = JSON.parse(response.body)
     user["id"].should equal 1234
     user["secret"].should == "abc"
-    Friend.find_by_src_user_id(user["id"]).dest_user_id.should == 1236
+    Friend.where(:src_user_id => 1234, :dest_user_id => 1236).should_not be_empty
   end
 
   it "/facebook creates and returns new user and fetch friends" do
