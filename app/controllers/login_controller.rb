@@ -37,7 +37,7 @@ class LoginController < ApplicationController
       render json: { :status => :error }, :status => :bad_request
     end
   rescue => e
-    pp e
+#    pp e
     render json: { :status => e }, :status => :bad_request
   end
 

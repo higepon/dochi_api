@@ -24,7 +24,6 @@ class PhotosController < ApplicationController
                      {:deck_id => @photo0.deck_id})
     render json: { :status => :ok }
   rescue => e
-    puts e
     render json: { :status => :error }, :status => :bad_request
   end
 

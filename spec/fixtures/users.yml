@@ -1,21 +1,25 @@
+##### Don not edit following users, since it is used for not only for test, but production #####
+
 taro: # already signup with Facebook integration
   id: 1234
   name: "taro"
   fb_id: 649065488
   email: higepon@gmail.com
-  avatar_url: "http://example.com/taro.jpg"
+  avatar_url: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/275848_649065487_2084373838_q.jpg"
   secret: abc
 
 john: # already signup but not connected facbook
   id: 1235
   name: "john"
   email: john@gmail.com
-  avatar_url: "http://example.com/taro.jpg"
+  avatar_url: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/s32x32/369628_716670904_1475755910_q.jpg"
   secret: def
 
 nancy: # facebook friend test
   id: 1236
   name: "Nancy Amfebadcjccb Romansen"
   fb_id: 100006521430332
-  avatar_url: "http://example.com/taro.jpg"
+  avatar_url: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s32x32/48640_1250029227_884965711_q.jpg"
   email: "ljrnjeq_romansen_1375414048@tfbnw.net"
+
+#####

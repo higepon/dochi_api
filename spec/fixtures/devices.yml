@@ -1,4 +1,10 @@
+##### Don not edit following device, since it is used for not only for test, but production #####
 john_device:
   id: 1
   user_id: 1235
-  token: 'b67a9487372607d6355537102c26e60c4bc95d0772256f56d4c8641465629b92'
+  token: 'b67a9487372607d6355537102c26e60c4bc95d0772256f7cd4c8641465629b58'
+
+nancy_device:
+  id: 2
+  user_id: 1236
+  token: 'b67a9487372607d6355537102c26e60c4bc95d0772256f7cd4c8641465629b58'

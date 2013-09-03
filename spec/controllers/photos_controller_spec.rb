@@ -55,15 +55,15 @@ describe PhotosController do
       fixtures :friends, :users, :devices
       it "should send push notification to friends" do
         request.accept = "application/json"
-        post :create, :user_id => 1234, :secret => 'abc', :photo0 => { :photo_image => @file, :name => 'saeko', :deck_id => 1 }, :photo1 => { :photo_image => @file, :name => 'jun', :deck_id => 2 }
+        post :create, :user_id => 1234, :secret => 'abc', :photo0 => { :photo_image => @file, :name => 'saeko', :deck_id => 2 }, :photo1 => { :photo_image => @file, :name => 'jun', :deck_id => 2 }
         response.should be_success
         creator = User.find(1234)
         friend = User.find(1235)
         device_token = friend.devices[0].token
-        notification = Rapns::Apns::Notification.where(:device_token => device_token, :delivered => false).first
+        notification = Rapns::Apns::Notification.where(:device_token => device_token, :delivered => false).order('id desc').first
         notification.should_not be_nil
         notification.alert.should == "taro wants to check you new photos!"
-        notification.attributes_for_device.should == {"deck_id" => 1}
+        notification.attributes_for_device.should == {"deck_id" => 2}
         notification.delivered.should be_false
       end
     end
