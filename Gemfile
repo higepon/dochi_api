@@ -52,5 +52,6 @@ gem 'koala'
 gem 'vcr'
 group :test do
   gem "webmock"
+  gem 'watchr'
 end
 gem 'rapns'

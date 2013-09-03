@@ -137,6 +137,7 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     vcr (2.5.0)
+    watchr (0.7)
     webmock (1.13.0)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
@@ -161,5 +162,6 @@ DEPENDENCIES
   sqlite3
   uglifier (>= 1.0.3)
   vcr
+  watchr
   webmock
   yajl-ruby
