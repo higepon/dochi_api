@@ -9,23 +9,12 @@ class DecksController < ApplicationController
     user_ids << @user.id
 
     @ds = Deck.find_all_by_user_id(user_ids)
-    respond_with(@ds, {:only => [:id], :methods => [:distance_of_created],
-                       :include => [{:photos => {:only => [:id, :name],
-                                                 :methods => [:url], 
-                                                 :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}},
-                                                               :only => [:id, :user]}}]}},
-                                    {:user => {:only => [:id, :name, :avatar_url]}}]})
+    respond_with(@ds, deck_json_format)
   end
 
   def show
     @deck = Deck.find(params[:deck_id])
-    respond_with(@deck, {:only => [:id], :methods => [:distance_of_created],
-                   :include => [{:photos => {:only => [:id, :name],
-                                                 :methods => [:url], 
-                                                 :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}},
-                                                               :only => [:id, :user]}}]}},
-                                    {:user => {:only => [:id, :name, :avatar_url]}}]})
-
+    respond_with(@deck, deck_json_format)
   end
 
   def new
@@ -39,9 +28,14 @@ class DecksController < ApplicationController
     respond_with @deck
   end
 
-  # def like
-  #   deck = Deck.find(params[:deck_id])
-  #   @user.like!(deck)
-  #   respond_with { :ok => :ok }
-  # end
+  private
+  def deck_json_format
+    {:only => [:id], :methods => [:distance_of_created],
+                       :include => [{:photos => {:only => [:id, :name],
+                                                 :methods => [:url], 
+                                                 :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}},
+                                                               :only => [:id, :user]}}]}},
+                                    {:user => {:only => [:id, :name, :avatar_url]}}]}
+  end
+  
 end
