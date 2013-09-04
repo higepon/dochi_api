@@ -17,6 +17,17 @@ class DecksController < ApplicationController
                                     {:user => {:only => [:id, :name, :avatar_url]}}]})
   end
 
+  def show
+    @deck = Deck.find(params[:deck_id])
+    respond_with(@deck, {:only => [:id], :methods => [:distance_of_created],
+                   :include => [{:photos => {:only => [:id, :name],
+                                                 :methods => [:url], 
+                                                 :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}},
+                                                               :only => [:id, :user]}}]}},
+                                    {:user => {:only => [:id, :name, :avatar_url]}}]})
+
+  end
+
   def new
     @deck = Deck.new
   end
