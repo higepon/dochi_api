@@ -8,3 +8,7 @@ nancy_device:
   id: 2
   user_id: 1236
   token: 'b67a9487372607d6355537102c26e60c4bc95d0772256f7cd4c8641465629b58'
+
+known_device:
+  user_id: 1234
+  token: 'known_token'
