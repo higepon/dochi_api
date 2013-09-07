@@ -9,7 +9,7 @@ describe User do
         not_liked_photo_id = 100
         photo = Photo.find(not_liked_photo_id)
         u = User.find(1234)
-        un.like!(photo).should be_true
+        u.like!(photo).should be_true
       end
     end
     context "when it has already been liked" do

@@ -5,7 +5,7 @@ describe DecksController do
   describe "#show" do
     it "should get show" do
       request.accept = "application/json"
-      get 'show', { :user_id => 1234, :secret => 'abc', :deck_id => 3 }
+      get 'show', { :user_id => 1234, :secret => 'abc', :id => 3 }
       response.should be_success
       body = response.body
       body.should have_json_type(Array).at_path("photos")

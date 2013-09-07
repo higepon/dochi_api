@@ -13,7 +13,8 @@ class DecksController < ApplicationController
   end
 
   def show
-    @deck = Deck.find(params[:deck_id])
+    pp params
+    @deck = Deck.find(params[:id])
     respond_with(@deck, deck_json_format)
   end
 
