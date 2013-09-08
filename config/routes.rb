@@ -8,6 +8,7 @@ DochiApi::Application.routes.draw do
   match 'photos/:photo_id/like' => 'photos#like', :via => :post
   match 'decks/:deck_id' => 'decks#show', :via => :post
   match 'device/update' => 'device#update', :via => :post
+  match 'friends/show' => 'friends#show', :via => :post
 
 
   # Sample of regular route:
