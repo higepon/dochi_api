@@ -24,6 +24,7 @@ class PhotosController < ApplicationController
                      {:deck_id => @photo0.deck_id})
     render json: { :status => :ok }
   rescue => e
+    puts e
     render json: { :status => :error }, :status => :bad_request
   end
 
@@ -43,8 +44,7 @@ class PhotosController < ApplicationController
 
 private
   def push_to_friends!(alert, attributes)
-    friends = @user.friends.map {|f| User.find(f.dest_user_id) }
-    devices = friends.map {|f| f.devices }.flatten
+    devices = @user.friends.map {|f| f.devices }.flatten
     devices.each {|d|
       n = Rapns::Apns::Notification.new
       n.app = Rapns::Apns::App.find_by_name("Dochi")
