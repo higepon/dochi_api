@@ -13,8 +13,19 @@ describe FriendsController do
       it "return a list of friends" do
         post :show, :user_id => 1234, :secret => 'abc'
         response.should be_success
+        body = response.body
+        body.should have_json_type(Array).at_path("friends")
+        body.should have_json_type(Integer).at_path("friends/0/id")
+        body.should have_json_type(String).at_path("friends/0/avatar_url")
+        body.should have_json_type(String).at_path("friends/0/name")
+        body.should_not have_json_type(String).at_path("friends/0/secret")
+        body.should_not have_json_type(String).at_path("friends/0/email")
 
-        # friend user matcher
+        json = JSON.parse(response.body)
+        friends = json["friends"]
+        friends.size should equal 2
+        friends[0]["id"] = 1235
+        friends[1]["id"] = 1236
       end
     end
   end
