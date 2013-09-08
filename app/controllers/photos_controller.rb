@@ -1,7 +1,7 @@
 require 'pp'
 
 class PhotosController < ApplicationController
-  respond_to :html, :json
+  respond_to :json
   skip_before_filter  :verify_authenticity_token
   before_filter :_login
   
