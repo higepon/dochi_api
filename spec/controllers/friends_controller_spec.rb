@@ -16,6 +16,7 @@ describe FriendsController do
         post :show, :user_id => 1234, :secret => 'abc'
         response.should be_success
         body = response.body
+        puts body
         body.should_not have_json_path("secret")
         body.should_not have_json_path("email")
         body.should_not have_json_path("fb_id")
