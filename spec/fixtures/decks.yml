@@ -9,3 +9,11 @@ two:
 deck_not_liked_yet:
   id: 3
   user_id: 1234
+
+1235:
+  id: 4
+  user_id: 1235
+
+1236:
+  id: 5
+  user_id: 1236

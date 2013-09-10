@@ -24,10 +24,11 @@ describe DecksController do
   end
 
   describe "#friend" do
+    fixtures :decks, :friends, :photos, :likes
     context "a friend of the user is specified" do
       it "should get decks of the friend" do
         request.accept = "application/json"
-        get 'friend', { :user_id => 1234, :secret => 'abc', :id => 3, :friend_id => 1235}
+        post :friend, { :user_id => 1234, :secret => 'abc', :id => 3, :friend_id => 1235}
         response.should be_success
         body = response.body
         body.should have_json_type(Array).at_path("0/photos")
@@ -49,8 +50,8 @@ describe DecksController do
     context "not friend of the user is specified" do
       it "should return error" do
         request.accept = "application/json"
-        get 'friend', { :user_id => 1234, :secret => 'abc', :id => 3, :friend_id => 1236}
-        response.should be_success
+        post :friend, { :user_id => 1234, :secret => 'abc', :id => 3, :friend_id => 1236}
+        response.should_not be_success
       end
     end
   end
@@ -73,7 +74,6 @@ describe DecksController do
     get :index, { :user_id => 1234, :secret => 'abc' }
     response.should be_success
     body = response.body
-#    puts body
     body.should have_json_type(Array).at_path("0/photos")
     body.should have_json_type(Integer).at_path("0/user/id")
     body.should have_json_type(String).at_path("0/user/avatar_url")

@@ -29,3 +29,15 @@ liked:
   name: "101"
   photo_image_uid: "101"
   deck_id: 3
+
+1235_photo1:
+  id: 1001
+  name: "photo1"
+  photo_image_uid: "photo1"
+  deck_id: 4
+
+1235_photo2:
+  id: 1002
+  name: "photo2"
+  photo_image_uid: "photo2"
+  deck_id: 4

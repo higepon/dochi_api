@@ -12,3 +12,7 @@ three:
   id: 3
   photo_id: 3
   user_id: 1235
+
+three:
+  photo_id: 1001
+  user_id: 1236

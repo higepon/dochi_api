@@ -1,5 +1,5 @@
 class DecksController < ApplicationController
-  respond_to :html, :json
+  respond_to :json
   skip_before_filter  :verify_authenticity_token
   before_filter :_login
 
@@ -13,9 +13,22 @@ class DecksController < ApplicationController
   end
 
   def show
-    pp params
     @deck = Deck.find(params[:id])
     respond_with(@deck, deck_json_format)
+  end
+
+  def friend
+    if (@user.friends.find {|f| f.id.to_s === params[:friend_id]})
+        @decks = Deck.find_all_by_user_id(params[:friend_id])
+        respond_with(@decks, :only => [:id], :methods => [:distance_of_created],
+                     :include => [{:photos => {:only => [:id, :name],
+                                      :methods => [:url], 
+                                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}},
+                                                       :only => [:id, :user]}}]}},
+                                  {:user => {:only => [:id, :name, :avatar_url]}}], :location => '/')
+    else
+      render json: { :status => :error }, :status => :bad_request
+    end
   end
 
   def new
