@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130902230100) do
     t.string   "photo_image_uid"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.integer  "deck_id"
+    t.integer  "deck_id",         :null => false
   end
 
   create_table "rapns_apps", :force => true do |t|
