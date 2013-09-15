@@ -1,43 +1,46 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  id: 1
+deck1-1:
   name: MyString
-  photo_image_uid: MyString
+  id: 1
+  photo_image_uid: 2013/09/15/13_55_56_153_keiko
   deck_id: 1
 
-two:
-  id: 2
+deck1-2:
   name: MyString
-  photo_image_uid: MyString
+  photo_image_uid: 2013/09/15/13_55_56_173_keiko
+  deck_id: 1
+
+deck2-1:
+  name: MyString
+  photo_image_uid: 2013/09/15/14_00_37_694_keiko
   deck_id: 2
 
-two:
-  id: 3
+deck2-2:
   name: MyString
-  photo_image_uid: MyString
-  deck_id: 1
+  photo_image_uid: 2013/09/15/14_00_37_715_keiko
+  deck_id: 2
 
 not_liked_yet:
   id: 100
   name: "100"
-  photo_image_uid: "100"
+  photo_image_uid: 2013/09/15/14_00_37_694_keiko
   deck_id: 3
 
 liked:
   id: 101
   name: "101"
-  photo_image_uid: "101"
+  photo_image_uid: 2013/09/15/14_00_37_715_keiko
   deck_id: 3
 
 1235_photo1:
   id: 1001
   name: "photo1"
-  photo_image_uid: "photo1"
+  photo_image_uid: 2013/09/15/13_55_56_153_keiko
   deck_id: 4
 
 1235_photo2:
   id: 1002
   name: "photo2"
-  photo_image_uid: "photo2"
+  photo_image_uid: 2013/09/15/13_55_56_173_keiko
   deck_id: 4
