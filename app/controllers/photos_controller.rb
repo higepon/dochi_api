@@ -31,6 +31,7 @@ class PhotosController < ApplicationController
   def like
     photo = Photo.find(params[:photo_id])
     if @user.like!(photo)
+      push_liked_photo!(photo)
       respond_with(photo,
                    {:only => [:id], :methods => [:url],
                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
@@ -43,6 +44,18 @@ class PhotosController < ApplicationController
   end
 
 private
+  def push_liked_photo!(photo)
+    target_user = photo.deck.user
+    n = Rapns::Apns::Notification.new
+    n.app = Rapns::Apns::App.find_by_name("Dochi")
+    target_user.devices.each {|device|
+      n.device_token = device.token
+      n.alert = "#{@user.name} liked your photo!"
+      n.attributes_for_device = {:deck_id => photo.deck_id, :user_id => target_user.id }
+      n.save!
+    }
+  end
+
   def push_to_friends!(alert, attributes)
     devices = @user.friends.map {|f| f.devices }.flatten
     devices.each {|d|
