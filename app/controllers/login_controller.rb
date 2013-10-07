@@ -51,8 +51,16 @@ private
     fb_ids = friends.map {|f| f["id"] }
     users = User.find_all_by_fb_id(fb_ids)
     users.each {|u|
-      friend = Friend.new(:src_user_id => src_user.id, :dest_user_id => u.id)
-      friend.save
+      begin
+        friend = Friend.new(:src_user_id => src_user.id, :dest_user_id => u.id)
+        friend.save
+      rescue
+      end
+      begin
+        friend = Friend.new(:dest_user_id => src_user.id, :src_user_id => u.id)
+        friend.save
+      rescue
+      end
     }
   end
 end

@@ -25,10 +25,10 @@ describe DeviceController do
     context "when a token is registerred" do
       it "keep it as it is" do
         request.accept = "application/json"
-        Device.where(:user_id => 1234, :token => "known_token").size.should be 1
+        Device.where(:user_id => 1234, :token => "0123456789012345678901234567890123456789012345678901234567891234").size.should be 1
         post :update, :user_id => 1234, :secret => 'abc', :token => "know_token"
         devices = Device.where(:user_id => 1234, :token => "new_token")
-        Device.where(:user_id => 1234, :token => "known_token").size.should be 1
+        Device.where(:user_id => 1234, :token => "0123456789012345678901234567890123456789012345678901234567891234").size.should be 1
         response.should be_success
         response.body.should be_json_eql(%({"status":"ok"}))
       end

@@ -11,4 +11,4 @@ nancy_device:
 
 known_device:
   user_id: 1234
-  token: 'known_token'
+  token: '0123456789012345678901234567890123456789012345678901234567891234'
