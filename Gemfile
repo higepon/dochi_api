@@ -41,6 +41,8 @@ gem 'jquery-rails'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.15'
 
+gem 'activerecord-postgresql-adapter'
+
 # rspec
 gem 'rspec'
 gem 'rspec-rails'
