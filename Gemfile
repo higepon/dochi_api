@@ -58,3 +58,4 @@ group :test do
 end
 gem 'rapns'
 gem 'spork', '~> 0.9.0.rc'
+gem 'fog'
