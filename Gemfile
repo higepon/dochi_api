@@ -59,3 +59,7 @@ end
 gem 'rapns'
 gem 'spork', '~> 0.9.0.rc'
 gem 'fog'
+
+group :production do
+  gem 'unicorn'
+end
