@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902230100) do
+ActiveRecord::Schema.define(:version => 20131014011940) do
 
   create_table "decks", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(:version => 20130902230100) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "friends", ["src_user_id", "dest_user_id"], :name => "index_friends_on_src_user_id_and_dest_user_id", :unique => true
 
   create_table "likes", :force => true do |t|
     t.integer  "photo_id"
