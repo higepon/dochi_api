@@ -1,19 +1,24 @@
 one:
   id: 1
   user_id: 1234
+  url_key: RR6-thdP6-9xnc0xLrLnnw
 
 two:
   id: 2
   user_id: 1234
+  url_key: s3lfte65Nhs53rsSE32N-g
 
 deck_not_liked_yet:
   id: 3
   user_id: 1234
+  url_key: yRvRx-TLSnB-Lbsy9iuUsg
 
 1235:
   id: 4
   user_id: 1235
+  url_key: zkNeOgfHv4P7PsD0DUimLg
 
 1236:
   id: 5
   user_id: 1236
+  url_key: bVafn4QkCDi1UCHXjCaxiA

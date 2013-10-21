@@ -1,8 +1,7 @@
 class DecksController < ApplicationController
   respond_to :json, :html
   skip_before_filter  :verify_authenticity_token
-#  before_filter :_login
-# あとでどうにかする
+  before_filter :_login, :except => [:perma_link]
 
   def index
     friends = Friend.find_all_by_src_user_id(@user.id)
@@ -15,6 +14,12 @@ class DecksController < ApplicationController
 
   def show
     @deck = Deck.find(params[:id])
+    respond_with(@deck, deck_json_format)
+  end
+
+  def perma_link
+    @deck = Deck.find_by_url_key(params[:url_key])
+    puts @deck
     respond_with(@deck, deck_json_format)
   end
 
