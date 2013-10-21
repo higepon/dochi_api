@@ -4,7 +4,7 @@
     <title>Dochi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% @deck.photos.each do |photo| %>
-      <meta property="og:image" content="<%= photo.photo_image.thumb('300x400#').url %>"/>
+      <meta property="og:image" content="http://dochi.herokuapp.com<%= photo.photo_image.thumb('300x400#').url %>"/>
     <% end %>    
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
