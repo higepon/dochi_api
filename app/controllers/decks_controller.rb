@@ -39,6 +39,7 @@ class DecksController < ApplicationController
   def create
     @deck = Deck.new
     @deck.user_id = @user.id
+    @deck.url_key = SecureRandom.urlsafe_base64(nil, false)
     @deck.save
     respond_with @deck
   end
