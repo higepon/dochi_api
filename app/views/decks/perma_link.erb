@@ -10,6 +10,12 @@
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="http://dochi.herokuapp.com/deck/<%= @deck.url_key %>"/>
     <meta property="fb:app_id" content="650328904977570" />
+    
+    <meta name="twitter:card" content="gallery">
+    <meta name="twitter:title" content="Which one do you like?">
+    <meta name="twitter:description" content="Using Dochi App, you can ask your friends 'Which one do you like?'">
+    <meta name="twitter:image0" content="<%= @deck.photos[0].photo_image.thumb('300x400#').url">
+    <meta name="twitter:image1" content="<%= @deck.photos[1].photo_image.thumb('300x400#').url">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
