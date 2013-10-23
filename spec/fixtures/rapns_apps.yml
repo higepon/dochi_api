@@ -2,6 +2,7 @@ dochi:
   id: 1
   name: 'Dochi'
   certificate: 'test'
-  environment: 'test’
+  environment: 'sandbox'
   password: 'test'
+  type: 'Rapns::Apns::App'
   connections: 1

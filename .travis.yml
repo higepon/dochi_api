@@ -8,6 +8,7 @@ env:
 script: 
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
+  - bundle exec rake db:fixtures:load FIXTURES_PATH=spec/fixtures 
   - bundle exec rspec spec/
 before_script:
   - mysql -e 'create database dochi_api'
