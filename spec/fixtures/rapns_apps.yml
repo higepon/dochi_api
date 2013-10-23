@@ -1,0 +1,7 @@
+dochi:
+  id: 1
+  name: 'Dochi'
+  certificate: 'test'
+  environment: 'test’
+  password: 'test'
+  connections: 1
