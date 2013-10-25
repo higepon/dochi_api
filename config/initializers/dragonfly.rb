@@ -40,8 +40,13 @@ app.processor.add :append do |temp_object, *args|
   p0 = Photo.find(args[0]).photo_image
   p1 = Photo.find(args[1]).photo_image
   result = `convert +append #{quote(p0.path)} #{quote(p1.path)} #{quote(tempfile.path)}`
-    pp $?.exitstatus
-  tempfile
+
+  # if fail, just return image0
+  if $?.exitstatus == 1 || !$?.success?
+    p0
+  else
+    tempfile
+  end
 end
 
 #app.processor.register(MyProcessor)
