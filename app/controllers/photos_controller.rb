@@ -22,7 +22,7 @@ class PhotosController < ApplicationController
     @photo1.save
     push_to_friends!("#{@user.name} wants to check you new photos!",
                      {:deck_id => @photo0.deck_id})
-    render json: { :status => :ok }
+    render json: { :status => :ok, :url => "http://dochi.herokuapps.com/deck/#{@photo0.deck.url_key}" }
   rescue => e
     puts e
     render json: { :status => :error }, :status => :bad_request
