@@ -15,21 +15,6 @@ if Rails.env.production?
   end
 end
 
-class MyProcessor
-
-  def two(temp_object, opts={})
-    puts "two"
-  end
-
-
-  private
-
-  def my_helper_method
-    # do stuff
-  end
-
-end
-
 include Dragonfly::ImageMagick::Utils
 
 app.processor.add :append do |temp_object, *args|
@@ -48,41 +33,5 @@ app.processor.add :append do |temp_object, *args|
     tempfile
   end
 end
-
-#app.processor.register(MyProcessor)
-
-# # module Dragonfly
-# #   module ImageMagick
-#     class Processor2
-#       # include Configurable
-#       # include Shell
-
-#       def new_tempfile(ext=nil)
-#         tempfile = ext ? Tempfile.new(['dragonfly', ".#{ext}"]) : Tempfile.new('dragonfly')
-#         tempfile.binmode
-#         tempfile.close
-#         tempfile
-#       end
-
-
-#       def convert(path1, path2)
-#         tempfile = new_tempfile(nil)
-#         puts "convert","#{path1} -append #{path2} #{quote(tempfile.path)}"
-#         run "convert"," +append #{path1} #{path2} hoge.jpg"
-#         tempfile
-#         puts "hoge called" 
-#       end
-     
-#       def c(path1, path2)
-#         convert(path1, path2)
-#       end
-#     end
-# #  end
-# #end
-
-
-# app.configure do |c|
-#   c.processor.register(Processor2)
-# end
 
 app.define_macro(ActiveRecord::Base, :image_accessor)
