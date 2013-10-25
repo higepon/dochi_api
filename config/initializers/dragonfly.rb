@@ -34,11 +34,6 @@ include Dragonfly::ImageMagick::Utils
 
 app.processor.add :append do |temp_object, *args|
 begin
-  # If exact same path, unknown stack overflow is issued in Shell.rb around "if log_commands"
-  if false #temp_object.path == args[0].path
-    temp_object
-  else
-  pp args
   # use temp_object.data, temp_object.path, temp_object.file, etc.
 #  app.configure {|c| c.log_commands = false }
   tempfile = new_tempfile(nil)
@@ -54,7 +49,6 @@ begin
     puts `ls -la #{tempfile.path}`
     pp $?.exitstatus
   tempfile
-  end
   rescue => e
   STDERR.puts("ERRR=#{e}")
   # return a String, Pathname, File or Tempfile
