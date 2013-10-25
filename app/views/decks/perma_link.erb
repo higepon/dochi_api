@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% i0 = @deck.photos[0].id %>
     <% i1 = @deck.photos[1].id %>
-    <% p0 = @deck.photos[0].photo_image.thumb('300x400#') %>
-    <% p1 = @deck.photos[1].photo_image.thumb('300x400#') %>
-    <meta property="og:image" content="http://dochi.herokuapp.com<%= p0.process(:append, i0, i1).url %>"/>
+    <% p0 = @deck.photos[0].photo_image.thumb('300x400') %>
+    <meta property="og:image" content="http://dochi.herokuapp.com<%= p0.process(:append, i0, i1).thumb('300x400').url %>"/>
     <% @deck.photos.each do |photo| %>
       <meta property="og:image" content="http://dochi.herokuapp.com<%= photo.photo_image.thumb('300x400#').url %>"/>
     <% end %>    
