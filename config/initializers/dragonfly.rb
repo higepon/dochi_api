@@ -33,9 +33,6 @@ end
 include Dragonfly::ImageMagick::Utils
 
 app.processor.add :append do |temp_object, *args|
-begin
-  # use temp_object.data, temp_object.path, temp_object.file, etc.
-#  app.configure {|c| c.log_commands = false }
   tempfile = new_tempfile(nil)
 #    puts `ls -la #{tempfile.path}`
 #  puts "convert -background blue +append #{quote(temp_object.path)} #{quote(args[0].path)} #{quote(tempfile.path)}"
@@ -49,10 +46,6 @@ begin
     puts `ls -la #{tempfile.path}`
     pp $?.exitstatus
   tempfile
-  rescue => e
-  STDERR.puts("ERRR=#{e}")
-  # return a String, Pathname, File or Tempfile
-end
 end
 
 #app.processor.register(MyProcessor)
