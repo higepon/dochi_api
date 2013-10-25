@@ -7,7 +7,7 @@
     <% i1 = @deck.photos[1].id %>
     <% p0 = @deck.photos[0].photo_image.thumb('300x400#') %>
     <% p1 = @deck.photos[1].photo_image.thumb('300x400#') %>
-    <meta property="og:image" content="http://dochi.herokuapp.com<%= p0.process(:append, p1, i0, i1).url %>"/>
+    <meta property="og:image" content="http://dochi.herokuapp.com<%= p0.process(:append, i0, i1).url %>"/>
     <% @deck.photos.each do |photo| %>
       <meta property="og:image" content="http://dochi.herokuapp.com<%= photo.photo_image.thumb('300x400#').url %>"/>
     <% end %>    

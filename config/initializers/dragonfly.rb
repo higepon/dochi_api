@@ -34,12 +34,8 @@ include Dragonfly::ImageMagick::Utils
 
 app.processor.add :append do |temp_object, *args|
   tempfile = new_tempfile(nil)
-#    puts `ls -la #{tempfile.path}`
-#  puts "convert -background blue +append #{quote(temp_object.path)} #{quote(args[0].path)} #{quote(tempfile.path)}"
-  #run "convert","+append #{quote(temp_object.path)} #{quote(args[0].path)} #{quote(tempfile.path)}"
-
-    p0 = Photo.find(args[1]).photo_image
-    p1 = Photo.find(args[2]).photo_image
+    p0 = Photo.find(args[0]).photo_image
+    p1 = Photo.find(args[1]).photo_image
     puts "p0 = #{p0} p1=#{p1}"
     result = `convert -background blue +append #{quote(p0.path)} #{quote(p1.path)} #{quote(tempfile.path)}`
 #    result = `convert -background blue +append #{quote(temp_object.path)} #{quote(args[0].path)} #{quote(tempfile.path)}`

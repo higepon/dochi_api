@@ -9,7 +9,7 @@ image2 = Photo.all[4].photo_image
 
 # うまくうごかず convert コマンドがなんにも言わない場合がある
 # file exist で確認すべき
-new_image = image2.process(:append, nil, p0.id, p1.id)
+new_image = image2.process(:append, p0.id, p1.id)
 puts "HH"
     puts `ls -la #{new_image.path}`
 result = `open #{new_image.thumb("30x40").path}`
