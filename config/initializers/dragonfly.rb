@@ -32,7 +32,7 @@ end
 
 include Dragonfly::ImageMagick::Utils
 
-app.processor.add :watermark do |temp_object, *args|
+app.processor.add :append do |temp_object, *args|
 begin
   # If exact same path, unknown stack overflow is issued in Shell.rb around "if log_commands"
   if false #temp_object.path == args[0].path
