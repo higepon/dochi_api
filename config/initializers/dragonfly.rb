@@ -34,12 +34,12 @@ include Dragonfly::ImageMagick::Utils
 
 app.processor.add :append do |temp_object, *args|
   tempfile = new_tempfile(nil)
-    p0 = Photo.find(args[0]).photo_image
-    p1 = Photo.find(args[1]).photo_image
-    puts "p0 = #{p0} p1=#{p1}"
-    result = `convert -background blue +append #{quote(p0.path)} #{quote(p1.path)} #{quote(tempfile.path)}`
-#    result = `convert -background blue +append #{quote(temp_object.path)} #{quote(args[0].path)} #{quote(tempfile.path)}`
-    puts `ls -la #{tempfile.path}`
+  
+  # When we pass photo_image directly, it causes cyclic reference error.
+  # So we fetch images again here :(
+  p0 = Photo.find(args[0]).photo_image
+  p1 = Photo.find(args[1]).photo_image
+  result = `convert +append #{quote(p0.path)} #{quote(p1.path)} #{quote(tempfile.path)}`
     pp $?.exitstatus
   tempfile
 end
