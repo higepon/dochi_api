@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% i0 = @deck.photos[0].id %>
     <% i1 = @deck.photos[1].id %>
-    <% p0 = @deck.photos[0].photo_image.thumb('300x400') %>
+    <% p0 = @deck.photos[0].photo_image %>
     <meta property="og:image" content="http://dochi.herokuapp.com<%= p0.process(:append, i0, i1).thumb('300x400').url %>"/>
     <% @deck.photos.each do |photo| %>
       <meta property="og:image" content="http://dochi.herokuapp.com<%= photo.photo_image.thumb('300x400#').url %>"/>
@@ -18,8 +18,8 @@
     <meta name="twitter:card" content="gallery">
     <meta name="twitter:title" content="Which one do you like?">
     <!-- <meta name="twitter:description" content="Using Dochi App, you can ask your friends 'Which one do you like?'"> -->
-    <meta name="twitter:image0" content="http://dochi.herokuapp.com<%= @deck.photos[0].photo_image.thumb('300x400#').url %>">
-    <meta name="twitter:image1" content="http://dochi.herokuapp.com<%= @deck.photos[1].photo_image.thumb('300x400#').url %>">
+    <meta name="twitter:image0" content="http://dochi.herokuapp.com<%= @deck.photos[0].photo_image.thumb('300x400').url %>">
+    <meta name="twitter:image1" content="http://dochi.herokuapp.com<%= @deck.photos[1].photo_image.thumb('300x400').url %>">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
