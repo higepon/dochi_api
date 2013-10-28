@@ -8,7 +8,7 @@ class DecksController < ApplicationController
     user_ids = friends.map {|f| f.dest_user_id }
     user_ids << @user.id
 
-    @ds = Deck.find_all_by_user_id(user_ids)
+    @ds = Deck.find_all_by_user_id(user_ids, :limit => 10, :order => 'created_at desc')
     respond_with(@ds, deck_json_format)
   end
 
@@ -19,7 +19,6 @@ class DecksController < ApplicationController
 
   def perma_link
     @deck = Deck.find_by_url_key(params[:url_key])
-    puts @deck
     respond_with(@deck, deck_json_format)
   end
 
