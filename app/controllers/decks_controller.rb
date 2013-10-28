@@ -8,7 +8,7 @@ class DecksController < ApplicationController
     user_ids = friends.map {|f| f.dest_user_id }
     user_ids << @user.id
 
-    @ds = Deck.find_all_by_user_id(user_ids, :limit => 10, :order => 'created_at asc')
+    @ds = Deck.find_all_by_user_id(user_ids, :limit => 10, :order => 'created_at desc')
     respond_with(@ds, deck_json_format)
   end
 
