@@ -115,6 +115,10 @@ mixpanel.init("ae4a392cd2105add1f346b648b316b30");</script><!-- end Mixpanel -->
       mixpanel.track_links("#app_link", "click app link", {
         referrer: document.referrer
       });
+      mixpanel.track(
+      'impression perma link',
+      { referrer: document.referrer }
+      );
     </script>
   </body>
 </html>
