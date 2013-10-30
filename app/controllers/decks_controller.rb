@@ -24,7 +24,7 @@ class DecksController < ApplicationController
 
   def friend
     if (@user.friends.find {|f| f.id.to_s === params[:friend_id]})
-        @decks = Deck.find_all_by_user_id(params[:friend_id])
+        @decks = Deck.find_all_by_user_id(params[:friend_id], :limit => 10, :order => 'created_at desc')
         respond_with(@decks, :only => [:id], :methods => [:distance_of_created],
                      :include => [{:photos => {:only => [:id, :name],
                                       :methods => [:url], 
