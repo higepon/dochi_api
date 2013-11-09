@@ -49,6 +49,13 @@ class DecksController < ApplicationController
   end
 
   def delete
+    @deck = Deck.find(params[:deck_id])
+    if (@user.id == @deck.user_id)
+      @deck.delete
+      render json: { :status => :ok }
+    else
+      render json: { :status => :forbidden }, :status => :forbidden
+    end
   end
 
   private

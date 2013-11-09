@@ -95,13 +95,22 @@ describe DecksController do
   end
 
   describe "#delete" do
-    it "deletes deck" do
-      request.accept = "application/json"
-      Deck.find(5).should_not be_nil
-      post :delete, { :user_id => 1234, :secret => 'abc', :deck_id => 5 }
-      response.should be_success
-      Deck.find(5).should be_nil
+    context "user is not owner of deck" do
+      it "doesn't delete deck" do
+        request.accept = "application/json"
+        Deck.find(5).should_not be_nil
+        post :delete, { :user_id => 1234, :secret => 'abc', :deck_id => 5 }
+        response.response_code.should == 403
+      end
+    end
+    context "user is owner of deck" do
+      it "deletes deck" do
+        request.accept = "application/json"
+        Deck.find(5).should_not be_nil
+        post :delete, { :user_id => 1236, :secret => 'ghi', :deck_id => 5 }
+        response.should be_success
+        Deck.find_all_by_id(5).should be_empty
+      end
     end
   end
-
 end
