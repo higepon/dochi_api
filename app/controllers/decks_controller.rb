@@ -48,6 +48,9 @@ class DecksController < ApplicationController
     respond_with @deck
   end
 
+  def delete
+  end
+
   private
   def deck_json_format
     {:only => [:id], :methods => [:distance_of_created],

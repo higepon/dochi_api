@@ -98,7 +98,7 @@ describe DecksController do
     it "deletes deck" do
       request.accept = "application/json"
       Deck.find(5).should_not be_nil
-      post :deck, { :user_id => 1234, :secret => 'abc', :deck_id => 5 }
+      post :delete, { :user_id => 1234, :secret => 'abc', :deck_id => 5 }
       response.should be_success
       Deck.find(5).should be_nil
     end

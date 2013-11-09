@@ -9,6 +9,7 @@ DochiApi::Application.routes.draw do
   match 'login/facebook' => 'login#facebook', :via => :post
   match 'photos/:photo_id/like' => 'photos#like', :via => :post
   match 'decks/:deck_id' => 'decks#show', :via => :post
+  match 'decks/delete/:deck_id' => 'decks#delete', :via => :post
   match 'decks/friend/:friend_id' => 'decks#friend', :via => :get # todo!
   match 'device/update' => 'device#update', :via => :post
   match 'friends/show' => 'friends#show', :via => :post
