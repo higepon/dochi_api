@@ -74,10 +74,8 @@ describe DecksController do
     get :index, { :user_id => 1234, :secret => 'abc' }
     response.should be_success
     body = response.body
-    puts body
     body.should have_json_type(Array).at_path("0/photos")
     body.should have_json_type(Integer).at_path("0/user/id")
-    body.should have_json_type(Boolean).at_path("0/editable")
     body.should have_json_type(String).at_path("0/user/avatar_url")
     body.should have_json_type(String).at_path("0/user/name")
     body.should have_json_type(String).at_path("0/photos/0/url")
