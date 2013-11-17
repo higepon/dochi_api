@@ -54,6 +54,8 @@ private
       begin
         friend = Friend.new(:src_user_id => src_user.id, :dest_user_id => u.id)
         friend.save
+        # coming here means, it's a new friend
+        push_friend_update!(u, src_user)
       rescue
       end
       begin
@@ -61,6 +63,17 @@ private
         friend.save
       rescue
       end
+    }
+  end
+
+  def push_friend_update!(target_user, new_user)
+    n = Rapns::Apns::Notification.new
+    n.app = Rapns::Apns::App.find_by_name("Dochi")
+    target_user.devices.each {|device|
+      n.device_token = device.token
+      n.alert = "#{new_user.name} started Dochi"
+      n.attributes_for_device = {:user_id => new_user.id }
+      n.save!
     }
   end
 end
