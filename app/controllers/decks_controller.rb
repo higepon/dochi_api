@@ -44,6 +44,7 @@ class DecksController < ApplicationController
     @deck = Deck.new
     @deck.user_id = @user.id
     @deck.url_key = SecureRandom.urlsafe_base64(nil, false)
+    @deck.is_public = (params[:is_public] == "1")
     @deck.save
     respond_with @deck
   end
