@@ -9,6 +9,8 @@ class DecksController < ApplicationController
     user_ids << @user.id
 
     @ds = Deck.find_all_by_user_id(user_ids, :limit => 10, :order => 'created_at desc')
+    @ds_public = Deck.find_all_by_is_public(true, :limit => 5, :order => 'created_at desc')
+    @ds = @ds + @ds_public
     respond_with(@ds, deck_json_format)
   end
 
