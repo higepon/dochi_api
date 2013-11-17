@@ -56,11 +56,37 @@ describe DecksController do
     end
   end
 
-  it "create deck" do
-    request.accept = "application/json"
-    post :create, { :user_id => 1234, :secret => 'abc' }
-    response.should be_success
-    response.body.should have_json_path("id")
+  describe "create#deck" do
+    context "is_public is not specified" do
+      it "should create private deck" do
+        request.accept = "application/json"
+        post :create, { :user_id => 1234, :secret => 'abc' }
+        response.should be_success
+        response.body.should have_json_path("id")
+        deck = JSON.parse(response.body)
+        Deck.find(deck["id"]).is_public.should be_false
+      end
+    end
+    context "is_public is false" do
+      it "should create private deck" do
+        request.accept = "application/json"
+        post :create, { :user_id => 1234, :secret => 'abc', :is_public => '0' }
+        response.should be_success
+        response.body.should have_json_path("id")
+        deck = JSON.parse(response.body)
+        Deck.find(deck["id"]).is_public.should be_false
+      end
+    end
+    context "is_public is true" do
+      it "should create public deck" do
+        request.accept = "application/json"
+        post :create, { :user_id => 1234, :secret => 'abc', :is_public => '1' }
+        response.should be_success
+        response.body.should have_json_path("id")
+        deck = JSON.parse(response.body)
+        Deck.find(deck["id"]).is_public.should be_true
+      end
+    end
   end
 
   it "/create returns error if user_id is not specified" do
