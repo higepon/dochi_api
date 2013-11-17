@@ -51,7 +51,7 @@ private
     target_user.devices.each {|device|
       n.device_token = device.token
       n.alert = "#{@user.name} liked your photo!"
-      n.attributes_for_device = {:deck_id => photo.deck_id, :user_id => target_user.id }
+      n.attributes_for_device = {:deck_id => photo.deck_id, :user_id => target_user.id, :type => "deck_detail" }
       n.save!
     }
   end
