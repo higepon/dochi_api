@@ -71,7 +71,7 @@ private
     n.app = Rapns::Apns::App.find_by_name("Dochi")
     target_user.devices.each {|device|
       n.device_token = device.token
-      n.alert = "#{new_user.name} started Dochi"
+      n.alert = "#{new_user.name} started usign Dochi"
       n.attributes_for_device = {:user_id => new_user.id, :type => "new_friend" }
       n.save!
     }
