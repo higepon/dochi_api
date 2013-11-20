@@ -12,11 +12,11 @@
     <meta property="og:url" content="http://dochi.monaos.org/deck/<%= @deck.url_key %>"/>
     <meta property="fb:app_id" content="650328904977570" />
     
-    <meta name="twitter:card" content="gallery">
+    <meta name="twitter:card" content="photo">
     <meta name="twitter:title" content="Which one do you like?">
-    <!-- <meta name="twitter:description" content="Using Dochi App, you can ask your friends 'Which one do you like?'"> -->
-    <meta name="twitter:image0" content="http://dochi.monaos.org<%= @deck.photos[0].photo_image.thumb('300x400').url %>">
-    <meta name="twitter:image1" content="http://dochi.monaos.org<%= @deck.photos[1].photo_image.thumb('300x400').url %>">
+    <meta name="twitter:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('600x800').url %>"/>
+    <meta name="twitter:image:width" content="600">
+    <meta name="twitter:image:height" content="800">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
