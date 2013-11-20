@@ -13,8 +13,6 @@
     <meta name="twitter:card" content="photo">
     <meta name="twitter:title" content="Which one do you like?">
     <meta name="twitter:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>">
-    <meta name="twitter:image:width" content="600">
-    <meta name="twitter:image:height" content="800">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>">
@@ -76,7 +74,7 @@ mixpanel.init("ae4a392cd2105add1f346b648b316b30");</script><!-- end mixpanel -->
             <div class="panel panel-default">
               <div class="panel-heading">
                 <div class="row">
-                  <div class="col-md-10"><img src="<%= @deck.user.avatar_url %>" style="width:30px"></div>
+                  <div class="col-md-10"><img src="<%= @deck.user.avatar_url %>" style="width:30px" alt="user"></div>
                   <div class="col-md-2"><%= @deck.distance_of_created %></div>
                 </div>
               </div>
@@ -87,7 +85,7 @@ mixpanel.init("ae4a392cd2105add1f346b648b316b30");</script><!-- end mixpanel -->
                     <div class="thumbnail">
                       <%= image_tag photo.photo_image.thumb('300x400#').url %>
                       <div class="caption">
-                        <p><a id="like_link" href="https://itunes.apple.com/app/dochi/id727405659" class="btn btn-like"><img src="/like_off.png" style="width:15px; padding-bottom:2px; margin-right:5px;">Like</a></p>
+                        <p><a id="like_link" href="https://itunes.apple.com/app/dochi/id727405659" class="btn btn-like"><img alt="like" src="/like_off.png" style="width:15px; padding-bottom:2px; margin-right:5px;">Like</a></p>
                       </div>
                     </div>
                   </div>
@@ -97,7 +95,7 @@ mixpanel.init("ae4a392cd2105add1f346b648b316b30");</script><!-- end mixpanel -->
             </div>
           </div>
           <div class="col-md-4">
-            <a id="app_link" href="https://itunes.apple.com/app/dochi/id727405659"><img src="/Download_on_the_App_Store_Badge_US-UK_135x40.png"></a>
+            <a id="app_link" href="https://itunes.apple.com/app/dochi/id727405659"><img alt="download" src="/Download_on_the_App_Store_Badge_US-UK_135x40.png"></a>
           </div>
         </div>
         <div class="row">
