@@ -2,6 +2,12 @@
 <html>
   <head>
     <title>Dochi</title>
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:title" content="Which one do you like?">
+    <meta name="twitter:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>">
+    <meta name="twitter:image:width" content="600">
+    <meta name="twitter:image:height" content="800">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% i0 = @deck.photos[0].id %>
     <% i1 = @deck.photos[1].id %>
@@ -12,11 +18,6 @@
     <meta property="og:url" content="http://dochi.monaos.org/deck/<%= @deck.url_key %>"/>
     <meta property="fb:app_id" content="650328904977570" />
     
-    <meta name="twitter:card" content="photo">
-    <meta name="twitter:title" content="Which one do you like?">
-    <meta name="twitter:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>"/>
-    <meta name="twitter:image:width" content="600">
-    <meta name="twitter:image:height" content="800">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
