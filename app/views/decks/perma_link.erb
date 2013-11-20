@@ -10,9 +10,13 @@
     <% i1 = @deck.photos[1].id %>
     <% p0 = @deck.photos[0].photo_image %>
 
-    <meta name="twitter:card"  content="summary" />
-    <meta name="twitter:title" content="Which one do you like?" />
-    <meta name="twitter:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>" />
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:site" content="@examplephotosite">
+    <meta name="twitter:creator" content="@sippey">
+    <meta name="twitter:title" content="Good Morning, San Francisco">
+    <meta name="twitter:image" content="http://example.com/photo/a/image.jpg">
+    <meta name="twitter:image:width" content="610">
+    <meta name="twitter:image:height" content="610">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>" />
