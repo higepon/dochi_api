@@ -10,7 +10,7 @@
     <% i1 = @deck.photos[1].id %>
     <% p0 = @deck.photos[0].photo_image %>
 
-    <meta name="twitter:card" content="photo" />
+    <meta name="twitter:card"  content="summary" />
     <meta name="twitter:title" content="Which one do you like?" />
     <meta name="twitter:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>" />
 
