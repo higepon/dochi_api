@@ -4,48 +4,19 @@
     <% i0 = @deck.photos[0].id %>
     <% i1 = @deck.photos[1].id %>
     <% p0 = @deck.photos[0].photo_image %>
-
-    <meta name="twitter:card"  content="photo" />
-    <meta name="twitter:title" content="Which one do you like?" />
-    <meta name="twitter:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:image" content="http://dochi.monaos.org<%= p0.process(:append, i0, i1).thumb('300x400').url %>" />
-    <meta property="og:title" content="Which one do you like? - Dochi" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://dochi.monaos.org/deck/<%= @deck.url_key %>" />
-    <meta property="fb:app_id" content="650328904977570" />
-    
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-
-    <title>Dochi</title>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
-<style>
-
-.btn-like {
-  color: #9fa1a3;
-  background-color: #ededee;
-  border-color: #ededee;
-}
-
-body {
-  padding-top: 70px;
-}
-
-</style>
-<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
-typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.tostring=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.tostring=function(){return c.tostring(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
-b._i.push([a,e,d])};b.__sv=1.2}})(document,window.mixpanel||[]);
-mixpanel.init("ae4a392cd2105add1f346b648b316b30");</script><!-- end mixpanel -->
+<meta name="twitter:card" content="photo">
+<meta name="twitter:site" content="@flickr">
+<meta name="og:title" content="Nella foresta di Lokobe...">
+<meta name="twitter:app:id:iphone" content="328407587">
+<meta name="twitter:app:url:iphone" content="flickr://flickr.com/photos/neera/8063633289/">
+<meta name="og:image" content="http://farm9.staticflickr.com/8029/8063633289_2cb362749f_z.jpg">
+<meta name="twitter:url" content="http://www.flickr.com/photos/neera/8063633289">
+<meta name="twitter:domain" content="">
+<meta name="twitter:creator" content="">
+<meta name="twitter:app:id:ipad" content="">
+<meta name="twitter:app:id:googleplay" content="">
+<meta name="twitter:app:url:ipad" content="">
+<meta name="twitter:app:url:googleplay" content="">
   </head>
   <body>
     <div id="fb-root"></div>
