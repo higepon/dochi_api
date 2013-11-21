@@ -1,5 +1,6 @@
 class DecksController < ApplicationController
-  respond_to :json, :html
+  respond_to :html, :perma_link
+  respond_to :json, :except => :perma_link
   skip_before_filter  :verify_authenticity_token
   before_filter :_login, :except => [:perma_link]
 
