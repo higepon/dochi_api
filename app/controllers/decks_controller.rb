@@ -13,7 +13,7 @@ class DecksController < ApplicationController
     @ds_public = Deck.find_all_by_is_public(true, :limit => 5, :order => 'created_at desc')
     @ds = @ds + @ds_public
     @ds.uniq! {|d| d.id }
-    @ds.sort! {|a, b| a.id.to_i <=> b.id.to_i }
+    @ds.sort! {|a, b| b.id.to_i <=> a.id.to_i }
     respond_with(@ds, deck_json_format)
   end
 
