@@ -53,23 +53,14 @@ describe FriendsController do
         post :suggestions, :user_id => 1234, :secret => 'abc'
         response.should be_success
         body = response.body
-        puts body
-        body.should_not have_json_path("secret")
-        body.should_not have_json_path("email")
-        body.should_not have_json_path("fb_id")
-        body.should have_json_type(String).at_path("name")
-        body.should have_json_type(Integer).at_path("id")
-        body.should have_json_type(String).at_path("avatar_url")
-
-        body.should have_json_type(Array).at_path("friends")
-        body.should have_json_type(Integer).at_path("friends/0/id")
-        body.should have_json_type(String).at_path("friends/0/avatar_url")
-        body.should have_json_type(String).at_path("friends/0/name")
+        body.should have_json_type(Array).at_path("")
+        body.should have_json_type(Integer).at_path("0/id")
+        body.should have_json_type(String).at_path("0/avatar_url")
+        body.should have_json_type(String).at_path("0/name")
         body.should_not have_json_path("friends/0/secret")
         body.should_not have_json_path("friends/0/email")
         body.should_not have_json_path("friends/0/fb_id")
-        json = JSON.parse(response.body)
-        friends = json["friends"]
+        friends = JSON.parse(response.body)
         friends.size.should be 2
         friends[0]["id"] = 1235
         friends[1]["id"] = 1236
