@@ -8,7 +8,7 @@ class FriendsController < ApplicationController
   end
 
   def suggestions
-    friends = User.find(:all, :conditions => ['id != ?', @user.id], :limit => 5, :order => "rand()")
+    friends = User.find(:all, :conditions => ['id != ?', @user.id], :limit => 5, :order => "random()")
     respond_with(friends, :only => [:id, :name, :avatar_url], :location => '/')
   end
 end
