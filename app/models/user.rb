@@ -14,6 +14,12 @@ class User < ActiveRecord::Base
     _friends.map {|f| User.find(f.dest_user_id) }
   end
 
+  def suggested_users
+    friend_ids = _friends.map {|f| User.find(f.dest_user_id) }
+    order_fun = if Rails.env.development? then "rand()" else "random()" end
+    User.where(["id NOT IN (?)", friend_ids]).limit(5).order(order_fun)
+  end
+
   def like!(photo)
     like = Like.new(:photo_id => photo.id, :user_id => self.id)
     like.save
