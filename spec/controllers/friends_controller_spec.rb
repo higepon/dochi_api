@@ -69,4 +69,34 @@ describe FriendsController do
     end
   end
 
+  describe "#create" do
+    context "when user is not specified" do
+      it "return error" do
+        request.accept = "application/json"
+        post :create, :user_id => 100000, :secret => 'abc', :dest_id => 100001
+        response.should_not be_success
+      end
+    end
+
+    context "when dest user is not found" do
+      it "return error" do
+        request.accept = "application/json"
+        post :create, :user_id => 1234, :secret => 'abc', :dest_id => 100001
+        response.should_not be_success
+      end
+    end
+
+    context "when user and dest user are specified" do
+      it "makes friend and return ok" do
+        request.accept = "application/json"
+        Friend.find_by_src_id(1234).should be_nil
+        post :create, :user_id => 1234, :secret => 'abc', :dest_id => 1237
+        response.should be_success
+        response.body.should have_json_path("status")
+        friend = Friend.find_by_src_id(1234)
+        friend.should_not be_nil
+        friend.dest_id should be 1237
+      end
+    end
+  end
 end

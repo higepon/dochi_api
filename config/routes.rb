@@ -14,6 +14,7 @@ DochiApi::Application.routes.draw do
   match 'device/update' => 'device#update', :via => :post
   match 'friends/show' => 'friends#show', :via => :post
   match 'friend/suggestions' => 'friends#suggestions', :via => :get
+  match 'friend/create' => 'friends#create', :via => :post
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
