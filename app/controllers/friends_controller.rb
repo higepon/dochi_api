@@ -13,6 +13,14 @@ class FriendsController < ApplicationController
   end
 
   def create
+    dest = User.find(params[:dest_user_id])
+    f = Friend.new
+    f.src_user_id = @user.id
+    f.dest_user_id = dest.id
+    f.save!
     render json: { :status => :ok }
+  rescue => e
+    puts e
+    render json: { :status => :error }, :status => :bad_request
   end
 end

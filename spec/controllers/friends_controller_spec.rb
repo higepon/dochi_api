@@ -62,9 +62,10 @@ describe FriendsController do
         body.should_not have_json_path("friends/0/email")
         body.should_not have_json_path("friends/0/fb_id")
         friends = JSON.parse(response.body)
-        friends.size.should be 2
+        friends.size.should be 3
         friends[0]["id"] = 1235
         friends[1]["id"] = 1236
+        friends[1]["id"] = 1237
       end
     end
   end
@@ -89,13 +90,13 @@ describe FriendsController do
     context "when user and dest user are specified" do
       it "makes friend and return ok" do
         request.accept = "application/json"
-        Friend.find_by_src_id(1234).should be_nil
-        post :create, :user_id => 1234, :secret => 'abc', :dest_id => 1237
+        Friend.find_by_src_user_id_and_dest_user_id(1234, 1237).should be_nil
+        post :create, :user_id => 1234, :secret => 'abc', :dest_user_id => 1237
         response.should be_success
         response.body.should have_json_path("status")
-        friend = Friend.find_by_src_id(1234)
+        friend = Friend.find_by_src_user_id_and_dest_user_id(1234, 1237)
         friend.should_not be_nil
-        friend.dest_id should be 1237
+        friend.dest_user_id.should be 1237
       end
     end
   end

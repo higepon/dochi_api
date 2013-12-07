@@ -23,4 +23,12 @@ nancy: # facebook friend test
   email: "ljrnjeq_romansen_1375414048@tfbnw.net"
   secret: ghi
 
+yuka: # friend create test
+  id: 1237
+  name: "Yuka"
+  fb_id: 100006521430331
+  avatar_url: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s32x32/48640_1250029227_884965711_q.jpg"
+  email: "ljrnjeq_romansendd_1375414048@tfbnw.net"
+  secret: ghi
+
 #####
