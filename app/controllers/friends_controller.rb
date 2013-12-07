@@ -11,4 +11,8 @@ class FriendsController < ApplicationController
     friends = @user.suggested_users # @User.find(:all, :conditions => ['id != ?', @user.id], :limit => 5, :order => "random()")
     respond_with(friends, :only => [:id, :name, :avatar_url], :location => '/')
   end
+
+  def create
+    render json: { :status => :ok }
+  end
 end
