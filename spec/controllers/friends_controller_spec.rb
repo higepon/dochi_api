@@ -62,7 +62,7 @@ describe FriendsController do
         body.should_not have_json_path("friends/0/email")
         body.should_not have_json_path("friends/0/fb_id")
         friends = JSON.parse(response.body)
-        friends.size.should be 3
+        friends.size.should be 4
         friends[0]["id"] = 1235
         friends[1]["id"] = 1236
         friends[1]["id"] = 1237
