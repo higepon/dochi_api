@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     friend_ids = _friends.map {|f| User.find(f.dest_user_id).id }
     order_fun = if Rails.env.development? then "rand()" else "random()" end
     if friend_ids.empty?
-      User.all(:limit =>5, :order => order_fun)
+      User.where("id != ?", self.id).limit(5).order(order_fun)
     else
       User.where(["id NOT IN (?)", friend_ids]).limit(5).order(order_fun)
     end
