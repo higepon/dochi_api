@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     if friend_ids.empty?
       User.where("id != ?", self.id).limit(5).order(order_fun)
     else
-      User.where(["id NOT IN (?)", friend_ids]).limit(5).order(order_fun)
+      User.where(["id NOT IN (?)", friend_ids + [self.id]]).limit(5).order(order_fun)
     end
   end
 

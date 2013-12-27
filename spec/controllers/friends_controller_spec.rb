@@ -33,7 +33,7 @@ describe FriendsController do
         json = JSON.parse(response.body)
         friends = json["friends"]
         friends.size.should be 1
-        friends[0]["id"] = 1235
+        friends[0]["id"].should be 1235
       end
     end
   end
@@ -62,10 +62,9 @@ describe FriendsController do
         body.should_not have_json_path("friends/0/email")
         body.should_not have_json_path("friends/0/fb_id")
         friends = JSON.parse(response.body)
-        friends.size.should be 3
-        friends[0]["id"] = 1235
-        friends[1]["id"] = 1236
-        friends[1]["id"] = 1237
+        friends.size.should be 2
+        friends[0]["id"].should be 1237
+        friends[1]["id"].should be 1236
       end
     end
   end
