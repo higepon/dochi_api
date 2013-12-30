@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117223636) do
+ActiveRecord::Schema.define(:version => 20131230233017) do
 
   create_table "decks", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20131117223636) do
     t.integer  "user_id"
     t.string   "url_key"
     t.boolean  "is_public"
+    t.string   "caption"
   end
 
   add_index "decks", ["is_public"], :name => "index_decks_on_is_public"
