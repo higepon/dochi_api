@@ -20,8 +20,10 @@ class PhotosController < ApplicationController
     @photo0.save
     @photo1 = Photo.new(params[:photo1])
     @photo1.save
-    push_to_friends!("#{@user.name} wants to check you new photos!",
-                     {:deck_id => @photo0.deck_id})
+    EM.defer do
+      push_to_friends!("#{@user.name} wants to check you new photos!",
+                       {:deck_id => @photo0.deck_id})
+    end
     render json: { :status => :ok, :url => "http://dochi.monaos.org/deck/#{@photo0.deck.url_key}" }
   rescue => e
     puts e
@@ -33,7 +35,6 @@ class PhotosController < ApplicationController
     if @user.like!(photo)
       EM.defer do
         push_liked_photo!(photo)
-        Rapns.push
       end
       respond_with(photo,
                    {:only => [:id], :methods => [:url],
@@ -57,6 +58,7 @@ private
       n.attributes_for_device = {:deck_id => photo.deck_id, :user_id => target_user.id, :type => "deck_detail" }
       n.save!
     }
+    Rapns.push
   end
 
   def push_to_friends!(alert, attributes)
@@ -69,5 +71,6 @@ private
       n.attributes_for_device = attributes
       n.save!
     }
+    Rapns.push
   end
 end

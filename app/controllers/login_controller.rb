@@ -55,7 +55,9 @@ private
         friend = Friend.new(:src_user_id => src_user.id, :dest_user_id => u.id)
         friend.save
         # coming here means, it's a new friend
-        push_friend_update!(u, src_user)
+        EM.defer do
+          push_friend_update!(u, src_user)
+        end
       rescue
       end
       begin
@@ -75,5 +77,6 @@ private
       n.attributes_for_device = {:user_id => new_user.id, :type => "new_friend" }
       n.save!
     }
+    Rapns.push
   end
 end
