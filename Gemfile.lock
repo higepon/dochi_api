@@ -47,6 +47,7 @@ GEM
       multi_json (~> 1.0)
       rack
     erubis (2.7.0)
+    eventmachine (1.0.3)
     excon (0.25.3)
     execjs (2.0.2)
     faraday (0.8.8)
@@ -178,6 +179,7 @@ DEPENDENCIES
   activerecord-postgresql-adapter
   coffee-rails (~> 3.2.1)
   dragonfly (~> 0.9.15)
+  eventmachine
   fog
   jquery-rails
   json_spec

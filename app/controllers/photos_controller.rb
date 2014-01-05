@@ -31,7 +31,10 @@ class PhotosController < ApplicationController
   def like
     photo = Photo.find(params[:photo_id])
     if @user.like!(photo)
-      push_liked_photo!(photo)
+      EM.defer do
+        push_liked_photo!(photo)
+        Rapns.push
+      end
       respond_with(photo,
                    {:only => [:id], :methods => [:url],
                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
