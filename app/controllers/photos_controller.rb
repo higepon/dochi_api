@@ -62,7 +62,11 @@ private
   end
 
   def push_to_friends!(alert, attributes)
-    devices = @user.friends.map {|f| f.devices }.flatten
+    if @photo0.deck.is_public
+      devices = User.where("id != ?", @user.id) {|f| f.devices }.flatten
+    else
+      devices = @user.friends.map {|f| f.devices }.flatten
+    end
     devices.each {|d|
       n = Rapns::Apns::Notification.new
       n.app = Rapns::Apns::App.find_by_name("Dochi")
