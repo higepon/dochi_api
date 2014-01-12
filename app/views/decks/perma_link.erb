@@ -42,20 +42,28 @@ body {
   padding-top: 70px;
 }
 
+.faces img {
+    height: 30px;
+    padding-right: 3px;
+    padding-top: 5px;
+}
+
 </style>
 <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
 typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.tostring=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.tostring=function(){return c.tostring(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
 b._i.push([a,e,d])};b.__sv=1.2}})(document,window.mixpanel||[]);
 mixpanel.init("ae4a392cd2105add1f346b648b316b30");</script><!-- end mixpanel -->
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   </head>
   <body>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
-      var js, fjs = d.getelementsbytagname(s)[0];
-      if (d.getelementbyid(id)) return;
-      js = d.createelement(s); js.id = id;
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_us/all.js#xfbml=1&appid=650328904977570";
-      fjs.parentnode.insertbefore(js, fjs);
+      fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
 
     <!-- Fixed navbar -->
@@ -86,11 +94,45 @@ mixpanel.init("ae4a392cd2105add1f346b648b316b30");</script><!-- end mixpanel -->
                     <div class="thumbnail">
                       <%= image_tag photo.photo_image.thumb('300x400#').url %>
                       <div class="caption">
-                        <p><a id="like_link" href="https://itunes.apple.com/app/dochi/id727405659" class="btn btn-like"><img alt="like" src="/like_off.png" style="width:15px; padding-bottom:2px; margin-right:5px;">Like</a></p>
+                        <div class= "obutton feature2" data-id="<%= photo.id %>">
+                        <% guest_user = User.find_by_fb_id("guest_" + session[:session_id]) %>
+                          <button class="btn-like btn like-button"><img alt="like" src="/like_<% if photo.likes.find {|like| like.user == guest_user } %>on<% else %>off<% end %>.png" style="width:15px; padding-bottom:2px; margin-right:5px;">Like</button>
+                          <div class="faces">
+                            <% photo.likes.each do |like| %>
+                              <img src="<%= like.user.avatar_url %>" alt="<%= like.user.name %>">
+                            <% end %>
+                          </div>    
+                        </div>
                       </div>
                     </div>
                   </div>
                   <% end %>
+                        <script>
+                          $('.like-button').click(function() {
+                          var photo_id = $(this).parent().data('id');
+                          var $button = $(this);
+                          var $img = $button.find('img');
+                          var src = $img.attr('src');
+                          if (src == '/like_on.png') {
+                              $img.attr('src', '/like_off.png');
+                          } else {
+                              $img.attr('src', '/like_on.png');
+                          }
+
+                          $.ajax({ 
+                              url: '/photos/' + photo_id + "/like_guest",
+                              type: 'post',
+                              success: function(result) {
+                                  $button.next(".faces").empty();
+                                  $.each(result.likes, function() {
+                                      var $img = $('<img>');
+                                      $img.attr("src", this.user.avatar_url);
+                                      $img.attr("alt", this.user.name);
+                                      $button.next(".faces").append($img);
+                                  });
+                              }});
+                          });
+                        </script>
                 </div>
               </div>
             </div>

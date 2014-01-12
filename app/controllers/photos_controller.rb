@@ -2,8 +2,9 @@ require 'pp'
 
 class PhotosController < ApplicationController
   respond_to :json
-  skip_before_filter  :verify_authenticity_token
   before_filter :_login
+  skip_before_filter :_login, :only => [:like_guest]
+  skip_before_filter :verify_authenticity_token
   
   def index
     @photos = Photo.all
@@ -30,31 +31,50 @@ class PhotosController < ApplicationController
     render json: { :status => :error }, :status => :bad_request
   end
 
+  def like_guest
+    session_id = session[:session_id]
+    # dummy id for Guest user
+    fb_id = "guest_" + session_id
+    user = User.find_by_fb_id(fb_id)
+    unless user
+      user = User.new
+      user.name = "Someone"
+      user.fb_id = fb_id
+      user.avatar_url = "/guest0.png"
+      user.save!
+    end
+    _like(user)
+  end
+
   def like
+    _like(@user)
+  end
+
+private
+  def _like(user)
     photo = Photo.find(params[:photo_id])
-    if @user.like!(photo)
+    if user.like!(photo)
       EM.defer do
-        push_liked_photo!(photo)
+        push_liked_photo!(photo, user)
       end
       respond_with(photo,
                    {:only => [:id], :methods => [:url],
                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
     else
-      @user.unlike!(photo)
+      user.unlike!(photo)
       respond_with(photo.reload,
                    {:only => [:id], :methods => [:url],
                      :include => [{:likes => {:include => {:user => {:only => [:avatar_url, :name, :id]}}, :only => [:id, :user]}}]})
     end
   end
 
-private
-  def push_liked_photo!(photo)
+  def push_liked_photo!(photo, user)
     target_user = photo.deck.user
     n = Rapns::Apns::Notification.new
     n.app = Rapns::Apns::App.find_by_name("Dochi")
     target_user.devices.each {|device|
       n.device_token = device.token
-      n.alert = "#{@user.name} liked your photo!"
+      n.alert = "#{user.name} liked your photo!"
       n.attributes_for_device = {:deck_id => photo.deck_id, :user_id => target_user.id, :type => "deck_detail" }
       n.save!
     }

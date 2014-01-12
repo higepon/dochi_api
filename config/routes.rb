@@ -8,6 +8,7 @@ DochiApi::Application.routes.draw do
   match 'deck/:url_key' => 'decks#perma_link', :via => :get
   match 'login/facebook' => 'login#facebook', :via => :post
   match 'photos/:photo_id/like' => 'photos#like', :via => :post
+  match 'photos/:photo_id/like_guest' => 'photos#like_guest', :via => :post
   match 'decks/:deck_id' => 'decks#show', :via => :post
   match 'decks/:deck_id/delete' => 'decks#delete', :via => :post
   match 'decks/friend/:friend_id' => 'decks#friend', :via => :get # todo!
