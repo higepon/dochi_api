@@ -40,7 +40,7 @@ class PhotosController < ApplicationController
       user = User.new
       user.name = "Someone"
       user.fb_id = fb_id
-      user.avatar_url = "/guest#{rand(8)}.png"
+      user.avatar_url = "http://dochi.monaos.org/guest#{rand(8)}.png"
       user.save!
     end
     _like(user)
