@@ -18,14 +18,17 @@ class FriendsController < ApplicationController
     f.src_user_id = @user.id
     f.dest_user_id = dest.id
     f.save!
-    n = Rapns::Apns::Notification.new
-    n.app = Rapns::Apns::App.find_by_name("Dochi")
-    dest.devices.each {|device|
-      n.device_token = device.token
-      n.alert = "#{@user.name} starts following you"
-      n.attributes_for_device = {:user_id => @user.id, :type => "new_friend" }
-      n.save!
-    }
+    EM.defer do
+      n = Rapns::Apns::Notification.new
+      n.app = Rapns::Apns::App.find_by_name("Dochi")
+      dest.devices.each {|device|
+        n.device_token = device.token
+        n.alert = "#{@user.name} starts following you"
+        n.attributes_for_device = {:user_id => @user.id, :type => "new_friend" }
+        n.save!
+      }
+      Rapns.push
+    end
     render json: { :status => :ok }
   rescue => e
     puts e
