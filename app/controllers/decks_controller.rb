@@ -9,8 +9,8 @@ class DecksController < ApplicationController
     user_ids = friends.map {|f| f.dest_user_id }
     user_ids << @user.id
 
-    @ds = Deck.find_all_by_user_id(user_ids, :limit => 10, :order => 'created_at desc')
-    @ds_public = Deck.find_all_by_is_public(true, :limit => 5, :order => 'created_at desc')
+    @ds = Deck.find_all_by_user_id(user_ids, :limit => 15, :order => 'created_at desc')
+    @ds_public = Deck.find_all_by_is_public(true, :limit => 10, :order => 'created_at desc')
     @ds = @ds + @ds_public
     @ds.uniq! {|d| d.id }
     @ds.sort! {|a, b| b.id.to_i <=> a.id.to_i }
